@@ -24,14 +24,17 @@ class CursoController extends Controller
 
     public function detalhe($link)
     {
-        var_dump($link);
+        $dados = array();
+        $curso = $this->modelCurso->getTodosCursos();
 
-        // $curso = $this->modelCurso->getTodosCursos();
-
-        // foreach ($curso as $linha) {
-        //     if ($this->gerarLinkCurso($linha['nome_curso']) == $link) {
-        //     }
-        // }
+        foreach ($curso as $linha) {
+            if ($this->gerarLinkCurso($linha['nome_curso']) == $link) {
+                $dados['curso'] = $linha;
+                $dados['titulo'] = $linha['nome_curso'];
+                $this->carregarViews('detalhe-curso', $dados);
+                return;
+            }
+        }
 
     }
 

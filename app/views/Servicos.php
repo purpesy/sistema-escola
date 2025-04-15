@@ -36,11 +36,11 @@
                     <?php $link = $this->gerarLinkCurso($linha['nome_curso']); ?>
                     <div class="card-categoria">
                         <div class="pad-categorias">
-                            <img src="assets/img/categorias/<?php echo $linha['foto_curso']; ?>" alt=<?php echo $linha['alt_curso']; ?>>
-                            <a href="curso/detalhe/<?php echo $link ?>">
-                            <h2><?php echo $linha['nome_curso']; ?></h2>
+                            <img src="assets/img/categorias/<?= $linha['foto_curso']; ?>" alt=<?= $linha['alt_curso']; ?>>
+                            <a href="curso/detalhe/<?= $link ?>">
+                            <h2><?= $linha['nome_curso']; ?></h2>
                             </a>
-                            <p><?php echo $linha['carga_horaria_curso']. ' Horas e R$ '. $linha['valor_curso']; ?></p>
+                            <p><?= $linha['carga_horaria_curso']. ' Horas e R$ '. $linha['valor_curso']; ?></p>
                         </div>
                     </div>
                     <?php endforeach; ?>
