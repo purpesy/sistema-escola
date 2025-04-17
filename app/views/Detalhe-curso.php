@@ -46,7 +46,7 @@
                       </ul>
                 </div>
                 <div class="curso-text3">
-                    <p>In this course take you from the fundamentals and concepts of data modeling all the way through a number of best practices and techniques that you’ll need to build data models in your organization. You’ll find many examples that clearly the key covered the course.</p>
+                    <p>In this course take you from the fundamentals and concepts of data modeling all the way through a number of best practices and techniques that you’ll need to build data models in your organizaçã. You’ll find many examples that clearly the key covered the course.</p>
                     <p>By the end of the course, you’ll be all set to not only put these principles to works but also to make the key data modeling and design decisions required by the info data modeling that transcend the nuts-and-bolts that clearly the key covered the course and design patterns.</p>
                 </div>
             </div>
