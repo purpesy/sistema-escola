@@ -12,7 +12,7 @@
 
     <!-- LITY CSS -->
     <link href="https://cdn.jsdelivr.net/npm/lity@2.4.1/dist/lity.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/page-course.css">
+    <link rel="stylesheet" href="assets/css/page-course.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <title><?= $curso['nome_curso'] ?></title>

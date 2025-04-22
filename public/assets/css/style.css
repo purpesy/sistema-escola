@@ -556,3 +556,214 @@ header>div:last-child {
 }
 
 
+
+#contato .formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#contato .formulario div {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.1rem;
+    gap: 10px;
+    color: #333;
+}
+
+#contato .formulario input,
+#contato .formulario textarea {
+    width: 100%;
+    max-width: 600px;
+    padding: 12px 16px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: border 0.3s, box-shadow 0.3s;
+}
+
+#contato .formulario input:focus,
+#contato .formulario textarea:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.4);
+    outline: none;
+}
+
+#contato .formulario textarea {
+    height: 150px;
+    resize: none;
+}
+
+#contato .formulario button {
+    width: 180px;
+    height: 50px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(to right, #4CAF50, #43A047);
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+#contato .formulario button:hover {
+    background: linear-gradient(to right, #43A047, #388E3C);
+    transform: scale(1.05);
+}
+
+#contato .formulario div:nth-child(6) {
+    display: flex;
+    justify-content: center;
+}
+
+
+.pageheader-section.style-2 {
+    padding-top: 250px;
+    background-image: url(../img/banner/01.jpg);
+}
+
+.secao-instrutores article figure::before {
+    content: "220 x 220";
+    font-size: 0.9rem;
+    color: #999;
+}
+
+/* NOME E FORMAÇÃO */
+.secao-instrutores article h4 {
+    font-size: 1.125rem;
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.secao-instrutores article p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+/* ESTRELAS DE AVALIAÇÃO */
+.secao-instrutores article .estrelas {
+    display: inline-flex;
+    gap: 2px;
+    margin-bottom: 12px;
+}
+
+.secao-instrutores article .estrelas i {
+    color: #fbc02d;
+    /* cor das estrelas */
+    font-size: 1rem;
+}
+
+/* RODAPÉ DO CARD: cursos e alunos */
+.secao-instrutores article footer {
+    margin-top: auto;
+    /* “empurra” para base do card se o conteúdo for variável */
+    width: 100%;
+}
+
+.secao-instrutores article footer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 0.875rem;
+    color: #666;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+}
+
+.secao-instrutores article footer ul li i {
+    color: #753b9d;
+    /* cor destaque ou roxa */
+    margin-right: 4px;
+}
+
+/* CTA (Chamada para ação) ao final */
+.secao-instrutores .mt-4 {
+    margin-top: 40px;
+}
+
+.secao-instrutores .mt-4 p {
+    font-size: 0.95rem;
+    color: #444;
+}
+
+.secao-instrutores .mt-4 p a {
+    font-weight: 600;
+    color: #753b9d;
+    text-decoration: none;
+}
+
+.secao-instrutores .mt-4 p a:hover {
+    text-decoration: underline;
+}
+
+
+
+
+/* RODAPÉ */
+footer {
+    background: #111;
+    color: white;
+    padding: 40px 0;
+
+    .footer-container {
+        display: flex;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: auto;
+
+        div {
+            flex: 1;
+            padding: 10px;
+        }
+
+        h2 {
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links ul li {
+            margin: 5px 0;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-social {
+            text-align: center;
+        }
+
+        .footer-contact p,
+        .footer-social a {
+            margin: 5px 0;
+        }
+
+        .footer-social a {
+            color: white;
+            font-size: 40px;
+            margin-right: 10px;
+        }
+    }
+
+    .footer-bottom {
+        text-align: center;
+        padding: 10px;
+        background: #000;
+        margin-top: 20px;
+    }
+}
