@@ -65,8 +65,7 @@
     <button id="btnVoltarTopo" class="btn-voltar-topo">
         <i class="fa-solid fa-angle-up fa-xs"></i>
     </button>
-
-
+    
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
