@@ -19,7 +19,7 @@ class Curso extends Model {
 
     // metodo para pegar um curso pelo NOME
     public function getCursoBynome($nome){
-        $sql = "SELECT * FROM tbl_curso WHERE nome_curso LIKE :nome";
+        $sql = "SELECT * FROM tbl_curso WHERE nome_curso LIKE :nome and status_curso = 'Ativo'";
         $stmt = $this->db->prepare($sql);
         $stmt->execute([':nome' => "$nome%"]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC); 
