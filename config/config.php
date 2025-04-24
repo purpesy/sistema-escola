@@ -10,8 +10,8 @@ define('DB_PASS', '_Tipi@03');
 //config email
 define('EMAIL_HOST', 'smpsistema.com.br');
 define('EMAIL_PORT', '465');
-define('EMAIL_USER', '');
-define('EMAIL_PASS', '');
+define('EMAIL_USER', 'tipi03@smpsistema.com.br');
+define('EMAIL_PASS', 'Senac@tipi03');
 // sistema carregamento automatico de class
 spl_autoload_register(function($class){
     if(file_exists('../app/controllers/'. $class . '.php')){
