@@ -16,7 +16,6 @@ define('EMAIL_HOST', 'smtp.hostinger.com');
 define('EMAIL_PORT', '465');
 define('EMAIL_USER', 'tipi03@smpsistema.com.br');
 define('EMAIL_PASS', 'Senac@tipi03');
-
 // sistema carregamento automatico de class
 spl_autoload_register(function($class){
     if(file_exists('../app/controllers/'. $class . '.php')){
