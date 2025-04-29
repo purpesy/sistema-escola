@@ -767,3 +767,296 @@ footer {
         margin-top: 20px;
     }
 }
+
+/* detalhe curso */
+
+#detalhe-curso .fa-signal {
+    position: relative;
+    display: inline-block;
+    mask-image: linear-gradient(to right, transparent 15%, black 20%);
+    -webkit-mask-image: linear-gradient(to right, transparent 15%, black 20%);
+}
+
+#detalhe-curso .roxo{
+background: #753b9d;
+}
+
+#detalhe-curso .verde{
+background: #00a556;
+}
+
+#detalhe-curso .amarelo{
+background: #eec93d;
+}
+
+#detalhe-curso .effra-regular {
+    font-family: "effra", sans-serif;
+    font-weight: 400;
+    font-weight: bold;
+}
+
+#detalhe-curso header nav {
+    margin-right: 130px;
+}
+#detalhe-curso .menu-header {
+    width: 60%;
+}
+#detalhe-curso .menu {
+    gap: 15px;
+}
+
+#detalhe-curso .effra {
+    font-family: "effra", sans-serif;
+    font-weight: bold;
+    /* Medium */
+    font-style: normal;
+}
+
+
+#detalhe-curso .sofast {
+    font-family: 'Sofast', sans-serif;
+    color: white;
+}
+
+#detalhe-curso .site {
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+#detalhe-curso header {
+    height: 130px;
+}
+
+#detalhe-curso header>div {
+    justify-content: space-between;
+    display: flex;
+    padding: 20px 0;
+}
+
+#detalhe-curso header>div>div {
+    display: flex;
+}
+
+#detalhe-curso header>div:first-child>div:last-child a {
+    margin-left: 30px;
+}
+
+#detalhe-curso header>div:first-child>div:first-child i {
+    margin-right: 10px;
+}
+
+#detalhe-curso header>div:first-child>div:first-child a {
+    margin-right: 30px;
+}
+
+#detalhe-curso header>div:nth-child(1) img {
+    height: 16px;
+}
+
+#detalhe-curso header a {
+    text-decoration: none;
+    color: white;
+}
+
+#detalhe-curso .banner-home {
+    align-items: end;
+    display: flex;
+    margin-top: -170px;
+    width: 100%;
+    height: 900px;
+    background-image: url('assets/img/banner/01#detalhe-curso .jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+#detalhe-curso .banner-texto {
+    color: white;
+}
+
+#detalhe-curso .banner-texto {
+    width: 40%;
+    font-family: 'Effra-Light', sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    display: flex;
+    flex-direction: column;
+}
+
+#detalhe-curso .banner-home>div {
+    display: flex;
+    align-items: center;
+}
+
+#detalhe-curso .banner-texto h2 {
+    font-size: 3em;
+    padding: 15px 0;
+}
+
+#detalhe-curso .banner-texto h4 {
+    line-height: 2em;
+}
+
+#detalhe-curso header nav {
+    display: flex;
+    align-items: center;
+}
+
+#detalhe-curso header nav ul {
+    display: flex;
+}
+
+
+#detalhe-curso .btn-header {
+    display: flex;
+}
+
+#detalhe-curso header>div:last-child {
+
+    align-items: center;
+
+}
+
+#detalhe-curso .btn-header a {
+    padding: 15px 20px;
+}
+
+#detalhe-curso .btn-header>div {
+    align-items: center;
+    display: flex;
+}
+
+#detalhe-curso .btn-header>div:first-child a {
+    color: #753b9d;
+}
+
+#detalhe-curso .btn-header>div:first-child {
+    background: #fff;
+}
+
+#detalhe-curso .btn-header>div:last-child {
+    background: #753b9d;
+}
+
+/* banner coisas novas */
+
+#detalhe-curso .banner-btns{
+    display: flex;
+    flex-direction: row;
+}
+
+#detalhe-curso .banner-btns .banner-texto-1{
+    background-color: #00a556;
+    margin-right: 10px;
+    width: 100px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: bold;
+}
+#detalhe-curso .banner-btns .banner-texto-2{
+    background-color: #ff9100;
+    width: 100px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: bold;
+}
+
+#detalhe-curso .banner-texto h2 {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+#detalhe-curso .banner-texto h4 {
+    font-size: 14px;    
+}
+
+#detalhe-curso .video-container {
+    width: 770px;
+    height: 460px;
+    background-color: white;
+    margin-left: 70px;
+    border: 20px solid black;
+    border-radius: 20px;
+    margin-bottom: -50px;
+}
+
+#detalhe-curso .video-placeholder {
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* sobre curso */
+
+#detalhe-curso .section-about {
+    display: flex;
+}
+
+#detalhe-curso .section-about>div:nth-child(1) {
+    width: 70%; 
+    margin-top: 50px;
+}
+#detalhe-curso .section-about>div:nth-child(2) {
+    width: 30%; 
+    margin-top: 50px;
+}
+
+#detalhe-curso .curso-text1 h2 {
+    font-size: 2em;
+    color: #efefef;
+    font-weight: bold;
+}
+
+#detalhe-curso .curso-text1 p {
+    font-size: 1em;
+    color: #efefef;
+}
+#detalhe-curso .curso-text2 h2 {
+    font-size: 2em;
+    color: #efefef;
+    font-weight: bold;
+}
+
+#detalhe-curso .curso-text2 ul li {
+    font-size: 1em;
+    color: #000000;
+    font-weight: bold;
+}
+
+#detalhe-curso .curso-text2 {
+    padding: 15px 0px;
+}
+
+#detalhe-curso .curso-text3 p {
+    font-size: 1em;
+    color: #efefef;
+}
+
+#detalhe-curso .div-card-about-course{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#detalhe-curso .card-about-course>div{
+    display: flex;
+    justify-content: space-between;
+}
+
+#detalhe-curso .card-about-course ul li {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+#detalhe-curso .offer {
+    background-color: #ff5e00;
+}

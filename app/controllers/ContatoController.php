@@ -35,7 +35,7 @@ class ContatoController extends Controller
 
                     try {
                         //Server settings
-                        $mail->SMTPDebug = 2;     
+                        $mail->SMTPDebug = 0;     
                         $mail->isSMTP();
                         $mail->Host       = EMAIL_HOST;
                         $mail->SMTPAuth   = true;
