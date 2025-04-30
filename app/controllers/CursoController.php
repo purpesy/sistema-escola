@@ -71,4 +71,16 @@ class CursoController extends Controller
         $link = strtr($link, $caracter);
         return $link;
     }
+
+    // DASH BOARD ###############
+
+    // metodo para listar os cursos
+    public function listar()
+    {
+        $dados = array();
+
+        $dados['conteudo'] = 'admin/curso/listar';
+
+        $this->carregarViews('admin/dash', $dados);
+    }
 }

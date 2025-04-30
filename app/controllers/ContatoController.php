@@ -9,6 +9,15 @@ class ContatoController extends Controller
         $this->carregarViews('contato', $dados);
     }
 
+    public function listar()
+    {
+        $dados = array();
+
+        $dados['conteudo'] = 'admin/contatos/listar';
+
+        $this->carregarViews('admin/dash', $dados);
+    }
+
     public function enviarEmail()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
