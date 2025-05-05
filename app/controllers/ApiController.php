@@ -7,12 +7,14 @@ class ApiController extends Controller {
     private $empresaModel;
     private $funcionarioModel;
     private $alunoModel;
+    private $projetoModel;
 
     public function __construct() {
         $this->cursoModel = new Curso();
         $this->empresaModel = new Empresa();
         $this->funcionarioModel = new Funcionario();
         $this->alunoModel = new Aluno();
+        $this->projetoModel = new Projeto();
     }
 
     // ===========================================================================
@@ -119,6 +121,39 @@ class ApiController extends Controller {
             return;
         }
         echo json_encode($aluno, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    }
+
+
+    // ===========================================================================
+            // *********************Projeto*********************************
+    // ===========================================================================
+
+    public function NovoProjeto(){
+        try {
+            $titulo = $_POST['titulo_projeto'] ?? null;
+            $descricao = $_POST['descricao_projeto'] ?? null;
+            $cod_professor = $_POST['id_professor'] ?? null;
+            $cod_sigla = $_POST['id_sigla'] ?? null;
+            $data_inicio = $_POST['data_inicio_projeto'] ?? null;
+            $data_entrega = $_POST['data_entrega_projeto'] ?? null;
+            $status_projeto = $_POST['status_projeto'] ?? null;
+            $url_projeto = $_POST['url_projeto'] ?? null;
+    
+            $resposta = $this->projetoModel->postNovoProjeto(
+                $titulo, $descricao, $cod_professor, $cod_sigla,
+                $data_inicio, $data_entrega, $status_projeto, $url_projeto
+            );
+    
+            header('Content-type: application/json');
+            echo json_encode($resposta);
+        } catch (PDOException $e) {
+            echo json_encode([
+                'success' => false,
+                'erro_real' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+        }
+        exit;
     }
 
 }

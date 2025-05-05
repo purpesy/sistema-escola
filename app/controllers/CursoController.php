@@ -81,6 +81,32 @@ class CursoController extends Controller
 
         $dados['conteudo'] = 'admin/curso/listar';
 
+        $cursos = $this->modelCurso->getTodosCursos();
+        $dados['cursos'] = $cursos;
+        $this->carregarViews('admin/dash', $dados);
+    }
+
+    public function criar()
+    {
+        $dados = array();
+
+        $dados['conteudo'] = 'admin/curso/criar';
+        $this->carregarViews('admin/dash', $dados);
+    }
+
+    public function editar()
+    {
+        $dados = array();
+
+        $dados['conteudo'] = 'admin/curso/editar';
+        $this->carregarViews('admin/dash', $dados);
+    }
+
+    public function desativar()
+    {
+        $dados = array();
+
+        $dados['conteudo'] = 'admin/curso/desativar';
         $this->carregarViews('admin/dash', $dados);
     }
 }

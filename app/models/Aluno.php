@@ -3,7 +3,7 @@
 class Aluno extends Model {
 
     public function GetAllAlunos(){
-        $sql = "SELECT nome_aluno, data_nasc_aluno, email_aluno, telefone1_aluno, nome_responsavel, email_responsavel, telefone_responsavel from tbl_aluno WHERE status_aluno = 'Ativo' ORDER BY nome_aluno asc";
+        $sql = "SELECT * FROM tbl_aluno WHERE status_aluno = 'Ativo' ORDER BY nome_aluno asc";
         $stmt = $this->db->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
