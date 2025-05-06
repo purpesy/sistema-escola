@@ -156,4 +156,25 @@ class ApiController extends Controller {
         exit;
     }
 
+    public function NovoPartProjeto(){
+        try {
+            $cod_projeto = $_POST['id_projeto'] ?? null;
+            $cod_aluno = $_POST['id_aluno'] ?? null;
+    
+            $resposta = $this->projetoModel->postParticipacaoProjeto(
+                $cod_projeto, $cod_aluno
+            );
+    
+            header('Content-type: application/json');
+            echo json_encode($resposta);
+        } catch (PDOException $e) {
+            echo json_encode([
+                'success' => false,
+                'erro_real' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+        }
+        exit;
+    }
+
 }
