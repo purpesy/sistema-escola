@@ -15,5 +15,11 @@ class Funcionario extends Model {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);  
     } 
 
+    public function getAllFuncionarios(){
+        $sql = "SELECT * FROM tbl_funcionario WHERE status_funcionario = 'ATIVO' ORDER BY nome_funcionario ASC;";
+        $stmt = $this->db->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } 
+
 
 }
