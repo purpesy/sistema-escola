@@ -1,8 +1,8 @@
 <div class="card mb-4">
     <div class="card-header d-flex">
-        <h3 class="card-title">Listar Empresas</h3>
-        <a href="<?= URL_BASE ?>empresas/criar" class="btn btn-success ms-auto">
-            <i class="bi bi-plus">Nova Empresa</i>
+        <h3 class="card-title">Listar contatos</h3>
+        <a href="<?= URL_BASE ?>contato/criar" class="btn btn-success ms-auto">
+            <i class="bi bi-plus">Novo Contato</i>
         </a>
     </div>
     <!-- /.card-header -->
@@ -10,31 +10,31 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Nome da unidade</th>
-                    <th>CNPJ</th>
+                    <th>Nome</th>
                     <th>Email</th>
                     <th>Telefone</th>
-                    <th>CEP</th>
+                    <th>Assunto</th>
+                    <th>Status</th>
                     <th>Editar</th>
                     <th>Desativar</th>
                 </tr>
             </thead>
 
             <tbody>
-                <?php foreach ($empresas as $linha): ?>
+                <?php foreach ($contatos as $linha): ?>
                     <tr class="align-middle">
-                        <td><?= $linha['fantasia_empresa']; ?></td>
-                        <td><?= $linha['cnpj_empresa']; ?></td>
-                        <td><?= $linha['email_empresa']; ?></td>
-                        <td><?= $linha['telefone1_empresa']; ?></td>
-                        <td><?= $linha['cep_empresa']; ?></td>
+                        <td><?= $linha['nome_Contato']; ?></td>
+                        <td><?= $linha['email_Contato']; ?></td>
+                        <td><?= $linha['telefone_Contato']; ?></td>
+                        <td><?= $linha['assunto_Contato']; ?></td>
+                        <td><?= $linha['status_Contato']; ?></td>
                         <td>
-                            <a href="<?= URL_BASE ?>empresas/editar" class="btn btn-warning bg-warning">
+                            <a href="<?= URL_BASE ?>contato/editar" class="btn btn-warning bg-warning">
                                 <i class="bi bi-pencil"></i>
                             </a>
                         </td>
                         <td>
-                            <a href="<?= URL_BASE ?>empresas/desativar" class="btn btn-danger bg-danger">
+                            <a href="<?= URL_BASE ?>contato/desativar" class="btn btn-danger bg-danger">
                                 <i class="bi bi-trash3-fill"></i>
                             </a>
                         </td>

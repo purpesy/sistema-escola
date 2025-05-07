@@ -49,8 +49,15 @@ class Projeto extends Model
         }
     }
 
-    public function postParticipacaoProjeto($cod_projeto, $cod_aluno)
+    public function postParticipacaoProjeto($cod_projeto, $nome_aluno)
     {
+        $aluno_sql = "SELECT id_aluno FROM tbl_aluno WHERE nome_aluno = :nome_aluno";
+        $aluno_stmt = $this->db->prepare($aluno_sql);
+        $aluno_stmt->bindParam(':nome_aluno', $nome_aluno);
+        $aluno_stmt->execute();
+        $cod_aluno = $aluno_stmt->fetchColumn();
+
+
         $sql = "INSERT INTO tbl_participacao_projeto(id_projeto, id_aluno, nota_participacao_projeto, obs_participacao_projeto) VALUES(:id_projeto, :id_aluno, 0, '')";
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':id_projeto', $cod_projeto);
@@ -58,7 +65,8 @@ class Projeto extends Model
         if ($stmt->execute()) {
             return [
                 'success' => true,
-                'id' => $this->db->lastInsertId()
+                'id_aluno' => $cod_aluno,
+                'id_participacao_projeto' => $this->db->lastInsertId()
             ];
         } else {
             return [
@@ -66,5 +74,11 @@ class Projeto extends Model
                 'error' => $stmt->errorInfo()
             ];
         }
+    }
+
+    public function getProjetos(){
+        $sql = "SELECT * FROM tbl_projeto ORDER BY titulo_projeto ASC;";
+        $stmt = $this->db->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);  
     }
 }

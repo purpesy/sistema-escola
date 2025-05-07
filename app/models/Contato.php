@@ -13,7 +13,12 @@ class Contato extends Model {
         $stmt->bindValue(':dataHora', $dataHora);
 
         return $stmt->execute(); // grava no banco
+    }
 
+    public function getContatos(){
+        $sql = "SELECT * FROM tbl_contato ORDER BY id_contato DESC;";
+        $stmt = $this->db->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);  
     }
 
 }

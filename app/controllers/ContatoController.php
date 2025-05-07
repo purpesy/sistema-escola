@@ -1,8 +1,16 @@
 <?php
 
 use PHPMailer\PHPMailer\PHPMailer;
+
 class ContatoController extends Controller
 {
+    private $modelContato;
+
+    public function __construct()
+    {
+        $this->modelContato = new Contato();
+    }
+
     public function index()
     {
         $dados = array();
@@ -13,8 +21,33 @@ class ContatoController extends Controller
     {
         $dados = array();
 
-        $dados['conteudo'] = 'admin/contatos/listar';
+        $dados['conteudo'] = 'admin/contato/listar';
+        $contatos = $this->modelContato->getContatos();
+        $dados['contatos'] = $contatos;
 
+        $this->carregarViews('admin/dash', $dados);
+    }
+    public function criar()
+    {
+        $dados = array();
+
+        $dados['conteudo'] = 'admin/contato/criar';
+        $this->carregarViews('admin/dash', $dados);
+    }
+
+    public function editar()
+    {
+        $dados = array();
+
+        $dados['conteudo'] = 'admin/contato/editar';
+        $this->carregarViews('admin/dash', $dados);
+    }
+
+    public function desativar()
+    {
+        $dados = array();
+
+        $dados['conteudo'] = 'admin/contato/desativar';
         $this->carregarViews('admin/dash', $dados);
     }
 
@@ -44,7 +77,7 @@ class ContatoController extends Controller
 
                     try {
                         //Server settings
-                        $mail->SMTPDebug = 0;     
+                        $mail->SMTPDebug = 0;
                         $mail->isSMTP();
                         $mail->Host       = EMAIL_HOST;
                         $mail->SMTPAuth   = true;
@@ -83,7 +116,7 @@ class ContatoController extends Controller
                     }
                 }
             }
-        }else{
+        } else {
             $dados = array();
             $this->carregarViews('contato', $dados);
         }
