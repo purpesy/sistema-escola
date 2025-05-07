@@ -1,1 +1,1 @@
-<h1>Editar curso</h1>
+<h1>Editar Professor</h1>

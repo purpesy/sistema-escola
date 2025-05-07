@@ -76,9 +76,10 @@ class Projeto extends Model
         }
     }
 
-    public function getProjetos(){
-        $sql = "SELECT * FROM tbl_projeto ORDER BY titulo_projeto ASC;";
+    public function getProjetos()
+    {
+        $sql = "SELECT p.*, f.nome_funcionario AS nome_professor, c.nome_curso AS nome_curso FROM tbl_projeto p JOIN tbl_professor pr ON p.id_professor = pr.id_professor JOIN tbl_funcionario f ON pr.id_funcionario = f.id_funcionario JOIN tbl_curso c ON p.id_sigla = c.id_curso ORDER BY p.titulo_projeto ASC;";
         $stmt = $this->db->query($sql);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);  
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

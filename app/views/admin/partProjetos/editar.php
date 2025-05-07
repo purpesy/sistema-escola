@@ -1,1 +1,1 @@
-<h1>Editar curso</h1>
+<h1>Editar Participação em projeto</h1>

@@ -19,4 +19,27 @@ class FuncionariosController extends Controller{
         $dados['funcionarios'] = $funcionarios;
         $this->carregarViews('admin/dash', $dados);
     }
+    public function criar()
+    {
+        $dados = array();
+
+        $dados['conteudo'] = 'admin/funcionarios/criar';
+        $this->carregarViews('admin/dash', $dados);
+    }
+
+    public function editar()
+    {
+        $dados = array();
+
+        $dados['conteudo'] = 'admin/funcionarios/editar';
+        $this->carregarViews('admin/dash', $dados);
+    }
+
+    public function desativar()
+    {
+        $dados = array();
+
+        $dados['conteudo'] = 'admin/funcionarios/desativar';
+        $this->carregarViews('admin/dash', $dados);
+    }
 }

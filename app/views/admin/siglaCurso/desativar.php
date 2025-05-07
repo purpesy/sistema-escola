@@ -1,1 +1,1 @@
-<h1>Desativar curso</h1>
+<h1>Desativar Sigla de curso</h1>

@@ -20,4 +20,27 @@ class MatriculasController extends Controller{
 
         $this->carregarViews('admin/dash', $dados);
     }
+    public function criar()
+    {
+        $dados = array();
+
+        $dados['conteudo'] = 'admin/matriculas/criar';
+        $this->carregarViews('admin/dash', $dados);
+    }
+
+    public function editar()
+    {
+        $dados = array();
+
+        $dados['conteudo'] = 'admin/matriculas/editar';
+        $this->carregarViews('admin/dash', $dados);
+    }
+
+    public function desativar()
+    {
+        $dados = array();
+
+        $dados['conteudo'] = 'admin/matriculas/desativar';
+        $this->carregarViews('admin/dash', $dados);
+    }
 }

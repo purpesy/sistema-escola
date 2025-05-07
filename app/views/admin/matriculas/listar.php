@@ -11,8 +11,8 @@
             <thead>
                 <tr>
                     <th>Data Matricula</th>
-                    <th>ID aluno</th>
-                    <th>ID sigla</th>
+                    <th>Aluno</th>
+                    <th>Curso</th>
                     <th>OBS</th>
                     <th>Editar</th>
                     <th>Desativar</th>
@@ -23,8 +23,8 @@
                 <?php foreach ($matricula as $linha): ?>
                     <tr class="align-middle">
                         <td><?= $linha['data_matricula']; ?></td>
-                        <td><?= $linha['id_aluno']; ?></td>
-                        <td><?= $linha['id_sigla']; ?></td>
+                        <td><?= $linha['nome_aluno']; ?></td>
+                        <td><?= $linha['nome_curso']; ?></td>
                         <td><?= $linha['obs_matricula']; ?></td>
                         <td>
                             <a href="<?= URL_BASE ?>matriculas/editar" class="btn btn-warning bg-warning">

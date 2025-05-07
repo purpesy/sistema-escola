@@ -1,1 +1,1 @@
-<h1>Criar curso</h1>
+<h1>Criar nota</h1>
