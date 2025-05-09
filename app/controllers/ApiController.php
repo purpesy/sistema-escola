@@ -105,6 +105,41 @@ class ApiController extends Controller
         echo json_encode($funcionarios, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 
+    public function ListarFuncionarioID($id)
+    {
+        $funcionario = $this->funcionarioModel->GetFuncionarioByID($id);
+        if (empty($funcionario)) {
+            http_response_code(404);
+            echo json_encode(["Mensagem" => "funcionario não encontrado"]);
+            return;
+        }
+        echo json_encode($funcionario, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    }
+
+    // Atualizar os dados do aluno patch(atualizar alguns dados), put(precisa atualizar todos)
+    public function AtualizarFuncionario($id)
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'PATCH') {
+            parse_str(file_get_contents("php://input"), $dados);
+            if (empty($dados)) {
+                http_response_code(404);
+                echo json_encode(["Mensagem" => "Nenhum dado enviado para atualizar."]);
+                return;
+            }
+            $resultado = $this->funcionarioModel->patchAtualizarFuncionario($dados, $id);
+            if ($resultado) {
+                http_response_code(200);
+                echo json_encode(["Mensagem" => "Funcionario atualizado com sucesso!"]);
+            } else {
+                http_response_code(500);
+                echo json_encode(["Mensagem" => "Não foi possível atualizar. Erro de servidor"]);
+            }
+        }else {
+            http_response_code(405);
+            echo json_encode(["erro" => "Método não permitido."]);
+        }
+    }
+
     // ===========================================================================
     // *********************ALUNO*********************************
     // ===========================================================================
