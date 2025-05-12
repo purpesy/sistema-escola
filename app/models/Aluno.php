@@ -49,4 +49,16 @@ class Aluno extends Model
 
         return $stmt->execute();  // Executa a atualização no banco
     }
+
+    // login aluno
+    public function postLoginAluno($email, $senha)
+    {
+
+        $sql = "SELECT * FROM tbl_aluno WHERE email_aluno = :email_aluno AND senha_aluno = :senha_aluno AND status_aluno = 'Ativo' ORDER BY id_aluno DESC LIMIT 1";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':email_aluno', $email);
+        $stmt->bindParam(':senha_aluno', $senha);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }

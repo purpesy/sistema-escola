@@ -84,7 +84,7 @@ class ApiController extends Controller
             if ($_SERVER['REQUEST_METHOD'] === 'PATCH') {
                 $resultado = $this->cursoModel->patchAtualizarCurso($dados, $id);
                 if ($resultado) {
-                     $_SESSION['mensagem_sucesso'] = "curso atualizado com sucesso!";
+                    $_SESSION['mensagem_sucesso'] = "curso atualizado com sucesso!";
                     // Se a atualização foi bem-sucedida, redireciona para a página de cursos
                     header('Location: ' . URL_BASE . 'curso/editar/' . $id . '?sucesso=true'); // Aqui você define a URL de destino
                     exit;
@@ -158,7 +158,7 @@ class ApiController extends Controller
     // Atualizar os dados do aluno patch(atualizar alguns dados), put(precisa atualizar todos)
     public function AtualizarFuncionario($id)
     {
-         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $dados = $_POST;
             if (isset($dados['_method']) && $dados['_method'] === 'PATCH') {
                 // Simula um método PATCH
@@ -226,7 +226,7 @@ class ApiController extends Controller
             if ($_SERVER['REQUEST_METHOD'] === 'PATCH') {
                 $resultado = $this->alunoModel->patchAtualizarAluno($dados, $id);
                 if ($resultado) {
-                     $_SESSION['mensagem_sucesso'] = "Aluno atualizado com sucesso!";
+                    $_SESSION['mensagem_sucesso'] = "Aluno atualizado com sucesso!";
                     // Se a atualização foi bem-sucedida, redireciona para a página de alunos
                     header('Location: ' . URL_BASE . 'alunos/editar/' . $id . '?sucesso=true'); // Aqui você define a URL de destino
                     exit;
@@ -238,6 +238,39 @@ class ApiController extends Controller
         } else {
             http_response_code(405);
             echo json_encode(["erro" => "Método não permitido."]);
+        }
+    }
+    // Login aluno
+    public function LoginAluno()
+    {
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $email = $_POST['   '] ?? null;
+            $senha = $_POST['senha_aluno'] ?? null;
+
+            if (!$email || !$senha) {
+                http_response_code(400);
+                echo json_encode(['erro' => 'Email e senha são obrigatorios']);
+                return;
+            }
+
+            $aluno = $this->alunoModel->postLoginAluno($email, $senha);
+
+            if ($aluno) {
+                http_response_code(200);
+                echo json_encode([
+                    'message' => 'Seu login foi realizado com sucesso',
+                    "Aluno" => $aluno
+                ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+            } else {
+
+                http_response_code(401);
+                echo json_encode(["erro" => "Email ou senha invalidos ou aluno inativo"]);
+            }
+        } else {
+            http_response_code(405);
+            echo json_encode(["erro" => "Metodo não permitido"]);
         }
     }
 
