@@ -59,6 +59,45 @@ class ApiController extends Controller
         echo json_encode($curso, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 
+    public function ListarCursoID($id)
+    {
+        $curso = $this->cursoModel->getCursoByID($id);
+        if (empty($curso)) {
+            http_response_code(404);
+            echo json_encode(["Mensagem" => "curso não encontrado"]);
+            return;
+        }
+        echo json_encode($curso, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    }
+
+
+    public function AtualizarCurso($id)
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $dados = $_POST;
+            if (isset($dados['_method']) && $dados['_method'] === 'PATCH') {
+                // Simula um método PATCH
+                $_SERVER['REQUEST_METHOD'] = 'PATCH';
+                unset($dados['_method']);
+            }
+
+            if ($_SERVER['REQUEST_METHOD'] === 'PATCH') {
+                $resultado = $this->cursoModel->patchAtualizarCurso($dados, $id);
+                if ($resultado) {
+                     $_SESSION['mensagem_sucesso'] = "curso atualizado com sucesso!";
+                    // Se a atualização foi bem-sucedida, redireciona para a página de cursos
+                    header('Location: ' . URL_BASE . 'curso/editar/' . $id . '?sucesso=true'); // Aqui você define a URL de destino
+                    exit;
+                } else {
+                    http_response_code(500);
+                    echo json_encode(["Mensagem" => "Não foi possível atualizar. Erro de servidor"]);
+                }
+            }
+        } else {
+            http_response_code(405);
+            echo json_encode(["erro" => "Método não permitido."]);
+        }
+    }
     // ===========================================================================
     // *********************EMPRESA*********************************
     // ===========================================================================
@@ -119,22 +158,27 @@ class ApiController extends Controller
     // Atualizar os dados do aluno patch(atualizar alguns dados), put(precisa atualizar todos)
     public function AtualizarFuncionario($id)
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'PATCH') {
-            parse_str(file_get_contents("php://input"), $dados);
-            if (empty($dados)) {
-                http_response_code(404);
-                echo json_encode(["Mensagem" => "Nenhum dado enviado para atualizar."]);
-                return;
+         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $dados = $_POST;
+            if (isset($dados['_method']) && $dados['_method'] === 'PATCH') {
+                // Simula um método PATCH
+                $_SERVER['REQUEST_METHOD'] = 'PATCH';
+                unset($dados['_method']);
             }
-            $resultado = $this->funcionarioModel->patchAtualizarFuncionario($dados, $id);
-            if ($resultado) {
-                http_response_code(200);
-                echo json_encode(["Mensagem" => "Funcionario atualizado com sucesso!"]);
-            } else {
-                http_response_code(500);
-                echo json_encode(["Mensagem" => "Não foi possível atualizar. Erro de servidor"]);
+
+            if ($_SERVER['REQUEST_METHOD'] === 'PATCH') {
+                $resultado = $this->funcionarioModel->patchAtualizarFuncionario($dados, $id);
+                if ($resultado) {
+                    $_SESSION['mensagem_sucesso'] = "Funcionário atualizado com sucesso!";
+                    // Se a atualização foi bem-sucedida, redireciona para a página de funcionários
+                    header('Location: ' . URL_BASE . 'funcionarios/editar/' . $id . '?sucesso=true'); // Aqui você define a URL de destino
+                    exit;
+                } else {
+                    http_response_code(500);
+                    echo json_encode(["Mensagem" => "Não foi possível atualizar. Erro de servidor"]);
+                }
             }
-        }else {
+        } else {
             http_response_code(405);
             echo json_encode(["erro" => "Método não permitido."]);
         }
@@ -171,26 +215,32 @@ class ApiController extends Controller
     // Atualizar os dados do aluno patch(atualizar alguns dados), put(precisa atualizar todos)
     public function AtualizarAluno($id)
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'PATCH') {
-            parse_str(file_get_contents("php://input"), $dados);
-            if (empty($dados)) {
-                http_response_code(404);
-                echo json_encode(["Mensagem" => "Nenhum dado enviado para atualizar."]);
-                return;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $dados = $_POST;
+            if (isset($dados['_method']) && $dados['_method'] === 'PATCH') {
+                // Simula um método PATCH
+                $_SERVER['REQUEST_METHOD'] = 'PATCH';
+                unset($dados['_method']);
             }
-            $resultado = $this->alunoModel->patchAtualizarAluno($dados, $id);
-            if ($resultado) {
-                http_response_code(200);
-                echo json_encode(["Mensagem" => "Aluno atualizado com sucesso!"]);
-            } else {
-                http_response_code(500);
-                echo json_encode(["Mensagem" => "Não foi possível atualizar. Erro de servidor"]);
+
+            if ($_SERVER['REQUEST_METHOD'] === 'PATCH') {
+                $resultado = $this->alunoModel->patchAtualizarAluno($dados, $id);
+                if ($resultado) {
+                     $_SESSION['mensagem_sucesso'] = "Aluno atualizado com sucesso!";
+                    // Se a atualização foi bem-sucedida, redireciona para a página de alunos
+                    header('Location: ' . URL_BASE . 'alunos/editar/' . $id . '?sucesso=true'); // Aqui você define a URL de destino
+                    exit;
+                } else {
+                    http_response_code(500);
+                    echo json_encode(["Mensagem" => "Não foi possível atualizar. Erro de servidor"]);
+                }
             }
-        }else {
+        } else {
             http_response_code(405);
             echo json_encode(["erro" => "Método não permitido."]);
         }
     }
+
 
 
     // ===========================================================================

@@ -30,22 +30,30 @@ class Funcionario extends Model {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function patchAtualizarFuncionario($dados, $id)
+   public function patchAtualizarFuncionario($dados, $id)
     {
         $campos = [];
+        $parametros = [];
         foreach ($dados as $campo => $valor) {
-            $campos[] = "$campo = :$campo";
+            if (!empty($valor)) {
+                $campos[] = "$campo = :$campo";
+                $parametros[":$campo"] = $valor;
+            }
         }
-
-        $sql = "UPDATE tbl_funcionario SET " . implode(', ', $campos) . ", data_atualizacao_funcionario = NOW() WHERE id_funcionario = :id_funcionario";
+        if (empty($campos)) {
+            return false;
+        }
+        // Adiciona campo de atualização
+        $campos[] = "data_atualizacao_funcionario = NOW()";
+        // Adiciona o ID
+        $parametros[':id_funcionario'] = $id;
+        // Monta a query
+        $sql = "UPDATE tbl_funcionario SET " . implode(', ', $campos) . " WHERE id_funcionario = :id_funcionario";
         $stmt = $this->db->prepare($sql);
-
-        foreach ($dados as $campo => $valor) {
-            $stmt->bindValue(":$campo", $valor); // <- Aqui está a correção
+        // Faz o bind dos parâmetros
+        foreach ($parametros as $campo => $valor) {
+            $stmt->bindValue($campo, $valor);
         }
-
-        $stmt->bindValue(':id_funcionario', $id); // Também pode usar bindValue aqui
-
         return $stmt->execute();
     }
 

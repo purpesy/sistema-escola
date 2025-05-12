@@ -35,7 +35,6 @@ class CursoController extends Controller
                 return;
             }
         }
-
     }
 
     function gerarLinkCurso($link)
@@ -94,11 +93,13 @@ class CursoController extends Controller
         $this->carregarViews('admin/dash', $dados);
     }
 
-    public function editar()
+    public function editar($id)
     {
         $dados = array();
 
         $dados['conteudo'] = 'admin/curso/editar';
+        $curso = $this->modelCurso->getCursoByID($id);
+        $dados['curso'] = $curso;
         $this->carregarViews('admin/dash', $dados);
     }
 

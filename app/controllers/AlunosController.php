@@ -1,6 +1,7 @@
 <?php
 
-class AlunosController extends Controller{
+class AlunosController extends Controller
+{
 
     private $modelAluno;
 
@@ -27,10 +28,11 @@ class AlunosController extends Controller{
         $this->carregarViews('admin/dash', $dados);
     }
 
-    public function editar()
+    public function editar($id)
     {
         $dados = array();
-
+        $aluno = $this->modelAluno->GetAlunosByID($id);
+        $dados['aluno'] = $aluno;
         $dados['conteudo'] = 'admin/alunos/editar';
         $this->carregarViews('admin/dash', $dados);
     }

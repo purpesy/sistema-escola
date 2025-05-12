@@ -40,12 +40,12 @@
                         <td><?= $linha['area_curso']; ?></td>
                         <td><?= $linha['pre_requisito_curso']; ?></td>
                         <td>
-                            <a href="<?= URL_BASE ?>curso/editar" class="btn btn-warning bg-warning">
+                            <a href="<?= URL_BASE ?>curso/editar/<?= $linha['id_curso']; ?>" class="btn btn-warning bg-warning">
                                 <i class="bi bi-pencil"></i>
                             </a>
                         </td>
                         <td>
-                            <a href="<?= URL_BASE ?>curso/desativar" class="btn btn-danger bg-danger">
+                            <a href="<?= URL_BASE ?>curso/desativar/<?= $linha['id_curso']; ?>" class="btn btn-danger bg-danger">
                                 <i class="bi bi-trash3-fill"></i>
                             </a>
                         </td>

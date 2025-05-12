@@ -45,7 +45,7 @@
                         <td><?= $linha['telefone1_aluno']; ?></td>
                         <td><?= $linha['cep_aluno']; ?></td>
                         <td>
-                            <a href="<?= URL_BASE ?>alunos/editar" class="btn btn-warning bg-warning">
+                            <a href="<?= URL_BASE ?>alunos/editar/<?= $linha['id_aluno']; ?>" class="btn btn-warning bg-warning">
                                 <i class="bi bi-pencil"></i>
                             </a>
                         </td>

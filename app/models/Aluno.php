@@ -22,19 +22,31 @@ class Aluno extends Model
     public function patchAtualizarAluno($dados, $id)
     {
         $campos = [];
+        $parametros = [];
         foreach ($dados as $campo => $valor) {
-            $campos[] = "$campo = :$campo";
+            if (!empty($valor)) {  // Verifica se o campo não está vazio
+                $campos[] = "$campo = :$campo";  // Adiciona o campo à lista de atualização
+                $parametros[":$campo"] = $valor;  // Associa o valor ao parâmetro correspondente
+            }
         }
 
+        // Verifique se há pelo menos um campo para atualizar
+        if (empty($campos)) {
+            return false; // Retorna false se nenhum campo foi preenchido
+        }
+
+        // Adiciona o id no final dos parâmetros
+        $parametros[':id_aluno'] = $id;
+
+        // Monta a consulta SQL dinamicamente, atualizando apenas os campos preenchidos
         $sql = "UPDATE tbl_aluno SET " . implode(', ', $campos) . ", data_atualizacao_aluno = NOW() WHERE id_aluno = :id_aluno";
         $stmt = $this->db->prepare($sql);
 
-        foreach ($dados as $campo => $valor) {
-            $stmt->bindValue(":$campo", $valor); // <- Aqui está a correção
+        // Faz o bind dos parâmetros
+        foreach ($parametros as $campo => $valor) {
+            $stmt->bindValue($campo, $valor);
         }
 
-        $stmt->bindValue(':id_aluno', $id); // Também pode usar bindValue aqui
-
-        return $stmt->execute();
+        return $stmt->execute();  // Executa a atualização no banco
     }
 }

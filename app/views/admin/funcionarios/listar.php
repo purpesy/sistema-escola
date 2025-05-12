@@ -45,12 +45,12 @@
                         <td><?= $linha['cargo_funcionario']; ?></td>
                         <td><?= $linha['cep_funcionario']; ?></td>
                         <td>
-                            <a href="<?= URL_BASE ?>funcionarios/editar" class="btn btn-warning bg-warning">
+                            <a href="<?= URL_BASE ?>funcionarios/editar/<?= $linha['id_funcionario'] ?>" class="btn btn-warning bg-warning">
                                 <i class="bi bi-pencil"></i>
                             </a>
                         </td>
                         <td>
-                            <a href="<?= URL_BASE ?>funcionarios/desativar" class="btn btn-danger bg-danger">
+                            <a href="<?= URL_BASE ?>funcionarios/desativar/<?= $linha['id_funcionario'] ?>" class="btn btn-danger bg-danger">
                                 <i class="bi bi-trash3-fill"></i>
                             </a>
                         </td>

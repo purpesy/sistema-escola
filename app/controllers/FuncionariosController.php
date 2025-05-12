@@ -27,11 +27,13 @@ class FuncionariosController extends Controller{
         $this->carregarViews('admin/dash', $dados);
     }
 
-    public function editar()
+    public function editar($id)
     {
         $dados = array();
 
         $dados['conteudo'] = 'admin/funcionarios/editar';
+        $funcionario = $this->modelFuncionario->GetFuncionarioByID($id);
+        $dados['funcionario'] = $funcionario;
         $this->carregarViews('admin/dash', $dados);
     }
 
