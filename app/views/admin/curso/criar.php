@@ -1,13 +1,13 @@
 <h1 class="text-center mt-5">Criar Curso</h1>
 
 <div class="container-fluid px-5 mt-4">
-    <form action="#" method="POST" enctype="multipart/form-data" class="p-5 rounded-4 shadow bg-white">
+    <form action="<?= URL_BASE ?>curso/criar" method="POST" enctype="multipart/form-data" class="p-5 rounded-4 shadow bg-white needs-validation">
         <div class="text-center mb-5">
             <label for="foto_curso" style="cursor: pointer;">
-                <img id="img-form" src="https://escola.360criativo.com.br/upload/sem-foto.jpg" alt="Foto do curso"
-                    class="rounded border shadow" style="width: 250px; transition: 0.3s;">
+                <img id="img-form" src="<?= URL_BASE ?>upload/sem-foto.jpg" alt="Foto do curso"
+                    class="rounded border shadow" style="width: 400px; transition: 0.3s;">
             </label>
-            <input type="file" id="foto_curso" name="foto_curso" style="display: none;" accept="image/*">
+            <input type="file" id="foto_curso" name="foto_curso" style="display: none;" accept="image/*" required>
             <p class="text-muted mt-2">Clique na imagem para selecionar uma foto</p>
         </div>
 
@@ -33,7 +33,10 @@
                 <label class="form-label">Carga horária (horas):</label>
                 <input type="number" name="carga_horaria_curso" class="form-control form-control-lg" placeholder="Horas" required>
             </div>
-
+            <div class="col-md-3">
+                <label class="form-label">Área do curso:</label>
+                <input type="text" name="area_curso" class="form-control form-control-lg" placeholder="Digite a área do curso" required>
+            </div>
             <div class="col-md-4">
                 <label class="form-label">Nível do curso:</label>
                 <select name="nivel_curso" class="form-select form-select-lg" required>
@@ -54,22 +57,6 @@
                     <option value="online">Online</option>
                 </select>
             </div>
-            <div class="col-md-4">
-                <label class="form-label">Área do curso:</label>
-                <select name="area_curso" class="form-select form-select-lg" required>
-                    <option value="" disabled selected>Selecione a área</option>
-                    <option value="tecnologia">Tecnologia</option>
-                    <option value="design">Design</option>
-                    <option value="marketing">Marketing</option>
-                    <option value="engenharia">Engenharia</option>
-                    <option value="saude">Saúde</option>
-                    <option value="administracao">Administração</option>
-                    <option value="educacao">Educação</option>
-                    <option value="financas">Finanças</option>
-                    <option value="direito">Direito</option>
-                    <option value="gastronomia">Gastronomia</option>
-                </select>
-            </div>
         </div>
 
         <div class="mt-5">
@@ -78,4 +65,23 @@
             </button>
         </div>
     </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const visualizarImg = document.getElementById('img-form');
+            const arquivo = document.getElementById('foto_curso'); 
+
+            arquivo.addEventListener('change', function() {
+                if (arquivo.files && arquivo.files[0]) {
+                    let render = new FileReader();
+                    render.onload = function(e) {
+                        visualizarImg.src = e.target.result;
+                    }
+                    render.readAsDataURL(arquivo.files[0]);
+                }
+            })
+
+        })
+    </script>
+
 </div>
