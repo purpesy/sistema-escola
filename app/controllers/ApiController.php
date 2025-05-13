@@ -1,9 +1,7 @@
 <?php
 
-
 class ApiController extends Controller
 {
-
     private $cursoModel;
     private $empresaModel;
     private $funcionarioModel;
@@ -70,7 +68,7 @@ class ApiController extends Controller
         echo json_encode($curso, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 
-
+    // Editar curso
     public function AtualizarCurso($id)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -246,7 +244,7 @@ class ApiController extends Controller
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            $email = $_POST['   '] ?? null;
+            $email = $_POST['email_aluno'] ?? null;
             $senha = $_POST['senha_aluno'] ?? null;
 
             if (!$email || !$senha) {
