@@ -121,20 +121,33 @@ class CursoController extends Controller
                     'status_curso' => $status_curso
                 );
                 $id_curso = $this->modelCurso->addCurso($dadosCurso);
-                var_dump($id_curso);
+                if ($id_curso) {
+                    if (isset($_FILES['foto_curso']) && $_FILES['foto_curso']['error'] == 0) {
+                        $arquivo = $this->uploadFoto($_FILES['foto_curso'], $id_curso, $nome_curso);
+                        var_dump($arquivo);
+                    }
+                }
             }
         }
-        // 3 Inserir os dados no banco
-        
-
-        // 4 Tratar o nome da imagem e salvar na pasta uploads
-
-        // 5 Atualizar o registro do curso, com a foto
-
-        // 6 fazer um alerta de sucesso ou erro na pagina de listar os cursos
-
         $dados['conteudo'] = 'admin/curso/criar';
         $this->carregarViews('admin/dash', $dados);
+    }
+
+    public function uploadFoto($file, $id, $nome)
+    {
+        $dir = 'upload/curso';
+
+        if (!file_exists($dir)) {
+            mkdir($dir, 0755, true);
+        }
+        $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+        $novoNome = $id . '_' . $this->gerarLinkCurso($nome) . '.' . $ext;
+        if(move_uploaded_file($file['tmp_name'], $dir . '/' . $novoNome)) {
+        return $novoNome;
+        }else{
+            $novoNome = 'sem-foto.jpg';
+            return $novoNome;
+        }
     }
 
     public function editar($id)
