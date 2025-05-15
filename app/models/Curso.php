@@ -82,5 +82,6 @@ class Curso extends Model
         $stmt->bindValue(':status_curso', $dados['status_curso']);
         $stmt->execute();
         return $this->db->lastInsertId();
+
     }
 }

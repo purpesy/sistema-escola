@@ -101,29 +101,31 @@ class CursoController extends Controller
             $nivel_curso = filter_input(INPUT_POST, 'nivel_curso', FILTER_SANITIZE_SPECIAL_CHARS);
             $modalidade_curso = filter_input(INPUT_POST, 'modalidade_curso', FILTER_SANITIZE_SPECIAL_CHARS);
             $alt_curso = $nome_curso;
-            date_default_timezone_get('America/Sao_Paulo');
+            date_default_timezone_set('America/Sao_Paulo');
             $data_criacao_curso = date('y-m-d H:i:s');
             $data_atualizacao_curso = date('y-m-d H:i:s');
             $status_curso = 'Pendente';
+            if ($nome_curso && $nivel_curso && $carga_horaria_curso) {
+                $dadosCurso = array(
+                    'nome_curso' => $nome_curso,
+                    'descricao_curso' => $descricao_curso,
+                    'pre_requisito_curso' => $pre_requisito_curso,
+                    'valor_curso' => $valor_curso,
+                    'carga_horaria_curso' => $carga_horaria_curso,
+                    'area_curso' => $area_curso,
+                    'nivel_curso' => $nivel_curso,
+                    'modalidade_curso' => $modalidade_curso,
+                    'alt_curso' => $alt_curso,
+                    'data_criacao_curso' => $data_criacao_curso,
+                    'data_atualizacao_curso' => $data_atualizacao_curso,
+                    'status_curso' => $status_curso
+                );
+                $id_curso = $this->modelCurso->addCurso($dadosCurso);
+                var_dump($id_curso);
+            }
         }
         // 3 Inserir os dados no banco
-        if ($nome_curso && $nivel_curso && $carga_horaria_curso) {
-            $dadosCurso = array(
-                'nome_curso' => $nome_curso,
-                'descricao_curso' => $descricao_curso,
-                'pre_requisito_curso' => $pre_requisito_curso,
-                'valor_curso' => $valor_curso,
-                'carga_horaria_curso' => $carga_horaria_curso,
-                'area_curso' => $area_curso,
-                'nivel_curso' => $nivel_curso,
-                'modalidade_curso' => $modalidade_curso,
-                'alt_curso' => $alt_curso,
-                'data_criacao_curso' => $data_criacao_curso,
-                'data_atualizacao_curso' => $data_atualizacao_curso,
-                'status_curso' => $status_curso
-            );
-            $id_curso = $this->modelCurso->addCurso($dadosCurso);
-        }
+        
 
         // 4 Tratar o nome da imagem e salvar na pasta uploads
 
