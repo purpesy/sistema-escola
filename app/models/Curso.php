@@ -68,29 +68,19 @@ class Curso extends Model
     // metodo para add curso
     public function addCurso($dados)
     {
-        $campos = [];
-        $valores = [];
-        $placeholders = [];
-
-        foreach ($dados as $campo => $valor) {
-            if (!empty($valor)) {
-                $campos[] = $campo;
-                $valores[":$campo"] = $valor;
-                $placeholders[] = ":$campo";
-            }
-        }
-
-        if (empty($campos)) {
-            return false;
-        }
-
-        $sql = "INSERT INTO tbl_curso (" . implode(', ', $campos) . ") VALUES (" . implode(', ', $placeholders) . ")";
+        $sql = "INSERT INTO tbl_curso (nome_curso, descricao_curso, pre_requisito_curso, valor_curso, carga_horaria_curso, area_curso, nivel_curso, modalidade_curso, alt_curso, data_criacao_curso, data_atualizacao_curso, status_curso) VALUES (:nome_curso, :descricao_curso, :pre_requisito_curso, :valor_curso, :carga_horaria_curso, :area_curso, :nivel_curso, :modalidade_curso, :alt_curso, NOW(), NOW(), :status_curso)";
         $stmt = $this->db->prepare($sql);
-
-        foreach ($valores as $placeholder => $valor) {
-            $stmt->bindValue($placeholder, $valor);
-        }
-
-        return $stmt->execute();
+        $stmt->bindValue(':nome_curso', $dados['nome_curso']);
+        $stmt->bindValue(':descricao_curso', $dados['descricao_curso']);
+        $stmt->bindValue(':pre_requisito_curso', $dados['pre_requisito_curso']);
+        $stmt->bindValue(':valor_curso', $dados['valor_curso']);
+        $stmt->bindValue(':carga_horaria_curso', $dados['carga_horaria_curso']);
+        $stmt->bindValue(':area_curso', $dados['area_curso']);
+        $stmt->bindValue(':nivel_curso', $dados['nivel_curso']);
+        $stmt->bindValue(':modalidade_curso', $dados['modalidade_curso']);
+        $stmt->bindValue(':alt_curso', $dados['alt_curso']);
+        $stmt->bindValue(':status_curso', $dados['status_curso']);
+        $stmt->execute();
+        return $this->db->lastInsertId();
     }
 }
