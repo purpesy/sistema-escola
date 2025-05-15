@@ -106,7 +106,7 @@ class CursoController extends Controller
             $data_atualizacao_curso = date('y-m-d H:i:s');
             $status_curso = 'Pendente';
         }
-        // 3 Inserir os dados no banco]
+        // 3 Inserir os dados no banco
         if ($nome_curso && $nivel_curso && $carga_horaria_curso) {
             $dadosCurso = array(
                 'nome_curso' => $nome_curso,
@@ -122,6 +122,7 @@ class CursoController extends Controller
                 'data_atualizacao_curso' => $data_atualizacao_curso,
                 'status_curso' => $status_curso
             );
+            $id_curso = $this->modelCurso->addCurso($dadosCurso);
         }
 
         // 4 Tratar o nome da imagem e salvar na pasta uploads

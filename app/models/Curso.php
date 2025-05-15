@@ -64,4 +64,33 @@ class Curso extends Model
         }
         return $stmt->execute();
     }
+
+    // metodo para add curso
+    public function addCurso($dados)
+    {
+        $campos = [];
+        $valores = [];
+        $placeholders = [];
+
+        foreach ($dados as $campo => $valor) {
+            if (!empty($valor)) {
+                $campos[] = $campo;
+                $valores[":$campo"] = $valor;
+                $placeholders[] = ":$campo";
+            }
+        }
+
+        if (empty($campos)) {
+            return false;
+        }
+
+        $sql = "INSERT INTO tbl_curso (" . implode(', ', $campos) . ") VALUES (" . implode(', ', $placeholders) . ")";
+        $stmt = $this->db->prepare($sql);
+
+        foreach ($valores as $placeholder => $valor) {
+            $stmt->bindValue($placeholder, $valor);
+        }
+
+        return $stmt->execute();
+    }
 }
