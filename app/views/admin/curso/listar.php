@@ -1,21 +1,21 @@
-<?php 
-    if(session_status() == PHP_SESSION_NONE){
-        session_start();
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (isset($_SESSION['mensagem']) && isset($_SESSION['tipoMsg'])) {
+    $msg = $_SESSION['mensagem'];
+    $tipo = $_SESSION['tipoMsg'];
+    // Exibir mensagem
+    if ($tipo == 'success') {
+        echo '<div class="alert alert-success" role="alert">' . $msg . '</div>';
+    } elseif ($tipo == 'erro') {
+        echo '<div class="alert alert-danger" role="alert">' . $msg . '</div>';
     }
 
-    if(isset($_SESSION['mensagem']) && isset($_SESSION['tipoMsg'])){
-        $msg = $_SESSION['mensagem'];
-        $tipo = $_SESSION['tipoMsg'];
-        // Exibir mensagem
-        if($tipo == 'success'){
-            echo '<div class="alert alert-success" role="alert">'.$msg.'</div>';
-        }elseif($tipo == 'erro'){
-            echo '<div class="alert alert-danger" role="alert">'.$msg.'</div>';
-        }
-
-        unset($_SESSION['mensagem']);
-        unset($_SESSION['tipoMsg']);
-    }
+    unset($_SESSION['mensagem']);
+    unset($_SESSION['tipoMsg']);
+}
 ?>
 
 <div class="card mb-4">
@@ -63,9 +63,12 @@
                         <td><?= $linha['pre_requisito_curso']; ?></td>
                         <td><?= $linha['status_curso']; ?></td>
                         <td>
-                            <a href="<?= URL_BASE ?>curso/editar/<?= $linha['id_curso']; ?>" class="btn btn-secondary bg-secondary">
-                                Publicar
-                            </a>
+                            <form action="<?= URL_BASE ?>curso/publicarCurso" method="POST" style="display:inline;">
+                                <input type="hidden" name="id_curso" value="<?= $linha['id_curso']; ?>">
+                                <button type="submit" class="btn btn-secondary bg-secondary">
+                                    Publicar
+                                </button>
+                            </form>
                         </td>
                         <td>
                             <a href="<?= URL_BASE ?>curso/editar/<?= $linha['id_curso']; ?>" class="btn btn-warning bg-warning">

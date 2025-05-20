@@ -179,4 +179,14 @@ class CursoController extends Controller
         $dados['conteudo'] = 'admin/curso/desativar';
         $this->carregarViews('admin/dash', $dados);
     }
+
+    public function publicarCurso(){
+        $id = filter_input(INPUT_POST, 'id_curso', FILTER_SANITIZE_NUMBER_INT);
+        $this->modelCurso->publicarCurso($id);
+
+        $_SESSION['mensagem'] = 'Curso publicado com sucesso';
+        $_SESSION['tipoMsg'] = 'success';
+        header('Location: ' . URL_BASE . 'curso/listar');
+        exit;
+    }
 }
