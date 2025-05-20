@@ -83,4 +83,13 @@ class Curso extends Model
         $stmt->execute();
         return $this->db->lastInsertId();
     }
+    // metodo para atualizar foto do curso
+    public function atualizarFoto($id, $foto)
+    {
+        $sql = "UPDATE tbl_curso SET foto_curso = :foto_curso WHERE id_curso = :id_curso";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':foto_curso', $foto);
+        $stmt->bindValue(':id_curso', $id);
+        $stmt->execute();
+    }
 }

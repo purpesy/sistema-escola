@@ -105,6 +105,7 @@ class CursoController extends Controller
             $data_criacao_curso = date('y-m-d H:i:s');
             $data_atualizacao_curso = date('y-m-d H:i:s');
             $status_curso = 'Pendente';
+
             if ($nome_curso && $nivel_curso && $carga_horaria_curso) {
                 $dadosCurso = array(
                     'nome_curso' => $nome_curso,
@@ -124,7 +125,13 @@ class CursoController extends Controller
                 if ($id_curso) {
                     if (isset($_FILES['foto_curso']) && $_FILES['foto_curso']['error'] == 0) {
                         $arquivo = $this->uploadFoto($_FILES['foto_curso'], $id_curso, $nome_curso);
-                        var_dump($arquivo);
+                        if ($arquivo) {
+                            // atualizar a foto na base de dados do ultimo id do curso adicionado
+                            $this->modelCurso->atualizarFoto($id_curso, $arquivo);
+                        } else {
+                            $dados['mensagem'] = 'Erro ao fazer upload da foto.';
+                            $dados['tipoMSG'] = 'Erro';
+                        }
                     }
                 }
             }
@@ -142,9 +149,9 @@ class CursoController extends Controller
         }
         $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
         $novoNome = $id . '_' . $this->gerarLinkCurso($nome) . '.' . $ext;
-        if(move_uploaded_file($file['tmp_name'], $dir . '/' . $novoNome)) {
-        return $novoNome;
-        }else{
+        if (move_uploaded_file($file['tmp_name'], $dir . '/' . $novoNome)) {
+            return $novoNome;
+        } else {
             $novoNome = 'sem-foto.jpg';
             return $novoNome;
         }
