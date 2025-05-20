@@ -15,7 +15,7 @@ class CursoController extends Controller
     {
         $dados = array();
 
-        $todosOsCurso = $this->modelCurso->getTodosCursos();
+        $todosOsCurso = $this->modelCurso->getTodosCursosAtivos();
 
         $dados['cursos'] = $todosOsCurso;
 
@@ -25,7 +25,7 @@ class CursoController extends Controller
     public function detalhe($link)
     {
         $dados = array();
-        $curso = $this->modelCurso->getTodosCursos();
+        $curso = $this->modelCurso->getTodosCursosAtivos();
 
         foreach ($curso as $linha) {
             if ($this->gerarLinkCurso($linha['nome_curso']) == $link) {

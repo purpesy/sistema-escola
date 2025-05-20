@@ -38,6 +38,8 @@
                     <th>CH</th>
                     <th>Área</th>
                     <th>Requisito</th>
+                    <th>Status</th>
+                    <th>Publicar</th>
                     <th>Editar</th>
                     <th>Desativar</th>
                 </tr>
@@ -47,8 +49,8 @@
                 <?php foreach ($cursos as $linha): ?>
                     <tr class="align-middle">
                         <td>
-                            <a href="<?= URL_BASE ?>assets/img/categorias/<?= $linha['foto_curso']; ?>" data-lightbox="curso<?= $linha['id_curso']; ?>" data-title="<?= $linha['nome_curso']; ?>">
-                                <img src="<?= URL_BASE ?>assets/img/categorias/<?= $linha['foto_curso']; ?>"
+                            <a href="<?= URL_BASE ?>upload/curso/<?= $linha['foto_curso']; ?>" data-lightbox="curso<?= $linha['id_curso']; ?>" data-title="<?= $linha['nome_curso']; ?>">
+                                <img src="<?= URL_BASE ?>upload/curso/<?= $linha['foto_curso']; ?>"
                                     style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; cursor: pointer;">
                             </a>
                         </td>
@@ -59,6 +61,12 @@
                         <td><?= $linha['carga_horaria_curso']; ?></td>
                         <td><?= $linha['area_curso']; ?></td>
                         <td><?= $linha['pre_requisito_curso']; ?></td>
+                        <td><?= $linha['status_curso']; ?></td>
+                        <td>
+                            <a href="<?= URL_BASE ?>curso/editar/<?= $linha['id_curso']; ?>" class="btn btn-secondary bg-secondary">
+                                Publicar
+                            </a>
+                        </td>
                         <td>
                             <a href="<?= URL_BASE ?>curso/editar/<?= $linha['id_curso']; ?>" class="btn btn-warning bg-warning">
                                 <i class="bi bi-pencil"></i>

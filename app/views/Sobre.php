@@ -16,7 +16,7 @@
                 <?php foreach ($cursos as $linha): ?>
                     <div class="card-categoria">
                         <div class="pad-categorias">
-                            <img src="assets/img/categorias/<?php echo $linha['foto_curso']; ?>" alt=<?php echo $linha['alt_curso']; ?>>
+                            <img src="<?php URL_BASE ?>upload/curso/<?php echo $linha['foto_curso']; ?>" alt=<?php echo $linha['alt_curso']; ?>>
                             <h2><?php echo $linha['nome_curso']; ?></h2>
                             <p><?php echo $linha['carga_horaria_curso']. ' Horas e R$ '. $linha['valor_curso']; ?></p>
                         </div>
