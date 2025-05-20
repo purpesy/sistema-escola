@@ -133,6 +133,11 @@ class CursoController extends Controller
                             $dados['tipoMSG'] = 'Erro';
                         }
                     }
+
+                    $_SESSION['mensagem'] = 'Curso adicionado com Sucesso';
+                    $_SESSION['tipoMsg'] = 'success';
+                    header('Location: ' . URL_BASE . 'curso/listar');
+                    exit;
                 }
             }
         }
