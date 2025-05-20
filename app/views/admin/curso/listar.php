@@ -1,3 +1,23 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (isset($_SESSION['mensagem']) && isset($_SESSION['tipoMsg'])) {
+    $msg = $_SESSION['mensagem'];
+    $tipo = $_SESSION['tipoMsg'];
+    // Exibir mensagem
+    if ($tipo == 'success') {
+        echo '<div class="alert alert-success" role="alert">' . $msg . '</div>';
+    } elseif ($tipo == 'erro') {
+        echo '<div class="alert alert-danger" role="alert">' . $msg . '</div>';
+    }
+
+    unset($_SESSION['mensagem']);
+    unset($_SESSION['tipoMsg']);
+}
+?>
+
 <div class="card mb-4">
     <div class="card-header d-flex">
         <h3 class="card-title">Listar Cursos</h3>
@@ -18,6 +38,8 @@
                     <th>CH</th>
                     <th>Área</th>
                     <th>Requisito</th>
+                    <th>Status</th>
+                    <th>Publicar</th>
                     <th>Editar</th>
                     <th>Desativar</th>
                 </tr>
@@ -27,8 +49,8 @@
                 <?php foreach ($cursos as $linha): ?>
                     <tr class="align-middle">
                         <td>
-                            <a href="<?= URL_BASE ?>assets/img/categorias/<?= $linha['foto_curso']; ?>" data-lightbox="curso<?= $linha['id_curso']; ?>" data-title="<?= $linha['nome_curso']; ?>">
-                                <img src="<?= URL_BASE ?>assets/img/categorias/<?= $linha['foto_curso']; ?>"
+                            <a href="<?= URL_BASE ?>upload/curso/<?= $linha['foto_curso']; ?>" data-lightbox="curso<?= $linha['id_curso']; ?>" data-title="<?= $linha['nome_curso']; ?>">
+                                <img src="<?= URL_BASE ?>upload/curso/<?= $linha['foto_curso']; ?>"
                                     style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; cursor: pointer;">
                             </a>
                         </td>
@@ -39,15 +61,33 @@
                         <td><?= $linha['carga_horaria_curso']; ?></td>
                         <td><?= $linha['area_curso']; ?></td>
                         <td><?= $linha['pre_requisito_curso']; ?></td>
+                        <td><?= $linha['status_curso']; ?></td>
+                        <td>
+                            <form action="<?= URL_BASE ?>curso/publicar" method="POST" style="display:inline;">
+                                <input type="hidden" name="id_curso" value="<?= $linha['id_curso']; ?>">
+                                <button type="submit" class="btn btn-secondary bg-secondary">
+                                    Publicar
+                                </button>
+                            </form>
+                        </td>
                         <td>
                             <a href="<?= URL_BASE ?>curso/editar/<?= $linha['id_curso']; ?>" class="btn btn-warning bg-warning">
                                 <i class="bi bi-pencil"></i>
                             </a>
                         </td>
                         <td>
-                            <a href="<?= URL_BASE ?>curso/desativar/<?= $linha['id_curso']; ?>" class="btn btn-danger bg-danger">
-                                <i class="bi bi-trash3-fill"></i>
-                            </a>
+                            <form action="<?= URL_BASE ?>curso/desativar" method="POST" style="display:inline;" onsubmit="return confirmarDesativacao()">
+                                <input type="hidden" name="id_curso" value="<?= $linha['id_curso']; ?>">
+                                <button type="submit" class="btn btn-danger bg-danger">
+                                    <i class="bi bi-trash3-fill"></i>
+                                </button>
+                            </form>
+                            <script>
+                                function confirmarDesativacao() {
+                                    return confirm('Tem certeza que deseja desativar este curso?');
+                                }
+                            </script>
+
                         </td>
                     </tr>
                 <?php endforeach; ?>

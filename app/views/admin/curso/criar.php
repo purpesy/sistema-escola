@@ -7,7 +7,7 @@
                 <img id="img-form" src="<?= URL_BASE ?>upload/sem-foto.jpg" alt="Foto do curso"
                     class="rounded border shadow" style="width: 400px; transition: 0.3s;">
             </label>
-            <input type="file" id="foto_curso" name="foto_curso" style="display: none;" accept="image/*" required>
+            <input type="file" id="foto_curso" name="foto_curso" style="display: none;" accept="image/*">
             <p class="text-muted mt-2">Clique na imagem para selecionar uma foto</p>
         </div>
 
@@ -41,10 +41,10 @@
                 <label class="form-label">Nível do curso:</label>
                 <select name="nivel_curso" class="form-select form-select-lg" required>
                     <option value="" disabled selected>Selecione o nível</option>
-                    <option value="tecnico">Técnico</option>
-                    <option value="tecnologo">Tecnólogo</option>
-                    <option value="graduacao">Graduação</option>
-                    <option value="pos">Pós graduação</option>
+                    <option value="Técnico">Técnico</option>
+                    <option value="Tecnólogo">Tecnólogo</option>
+                    <option value="Graduação">Graduação</option>
+                    <option value="Pós graduação">Pós graduação</option>
                     <option value="livre">Livre</option>
                 </select>
             </div>

@@ -17,7 +17,7 @@
                     <?php $link = $this->gerarLinkCurso($linha['nome_curso']); ?>
                     <div class="card-categoria">
                         <div class="pad-categorias">
-                            <img src="assets/img/categorias/<?= $linha['foto_curso']; ?>" alt=<?= $linha['alt_curso']; ?>>
+                            <img src="<?php URL_BASE ?>upload/curso/<?= $linha['foto_curso']; ?>" alt=<?= $linha['alt_curso']; ?>>
                             <a href="curso/detalhe/<?= $link ?>">
                             <h2><?= $linha['nome_curso']; ?></h2>
                             </a>
