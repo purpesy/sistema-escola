@@ -105,4 +105,11 @@ class Curso extends Model
         $stmt->bindValue(':id', $id);
         $stmt->execute();
     }
+
+    public function desativarCurso($id){
+        $sql = "UPDATE tbl_curso SET status_curso = 'Desativado' WHERE id_curso = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id', $id);
+        $stmt->execute();
+    }
 }

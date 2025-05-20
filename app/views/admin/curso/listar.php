@@ -63,7 +63,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipoMsg'])) {
                         <td><?= $linha['pre_requisito_curso']; ?></td>
                         <td><?= $linha['status_curso']; ?></td>
                         <td>
-                            <form action="<?= URL_BASE ?>curso/publicarCurso" method="POST" style="display:inline;">
+                            <form action="<?= URL_BASE ?>curso/publicar" method="POST" style="display:inline;">
                                 <input type="hidden" name="id_curso" value="<?= $linha['id_curso']; ?>">
                                 <button type="submit" class="btn btn-secondary bg-secondary">
                                     Publicar
@@ -76,9 +76,18 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipoMsg'])) {
                             </a>
                         </td>
                         <td>
-                            <a href="<?= URL_BASE ?>curso/desativar/<?= $linha['id_curso']; ?>" class="btn btn-danger bg-danger">
-                                <i class="bi bi-trash3-fill"></i>
-                            </a>
+                            <form action="<?= URL_BASE ?>curso/desativar" method="POST" style="display:inline;" onsubmit="return confirmarDesativacao()">
+                                <input type="hidden" name="id_curso" value="<?= $linha['id_curso']; ?>">
+                                <button type="submit" class="btn btn-danger bg-danger">
+                                    <i class="bi bi-trash3-fill"></i>
+                                </button>
+                            </form>
+                            <script>
+                                function confirmarDesativacao() {
+                                    return confirm('Tem certeza que deseja desativar este curso?');
+                                }
+                            </script>
+
                         </td>
                     </tr>
                 <?php endforeach; ?>

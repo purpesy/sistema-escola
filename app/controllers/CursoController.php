@@ -172,19 +172,21 @@ class CursoController extends Controller
         $this->carregarViews('admin/dash', $dados);
     }
 
-    public function desativar()
-    {
-        $dados = array();
-
-        $dados['conteudo'] = 'admin/curso/desativar';
-        $this->carregarViews('admin/dash', $dados);
-    }
-
-    public function publicarCurso(){
+    public function publicar(){
         $id = filter_input(INPUT_POST, 'id_curso', FILTER_SANITIZE_NUMBER_INT);
         $this->modelCurso->publicarCurso($id);
 
         $_SESSION['mensagem'] = 'Curso publicado com sucesso';
+        $_SESSION['tipoMsg'] = 'success';
+        header('Location: ' . URL_BASE . 'curso/listar');
+        exit;
+    }
+
+    public function desativar(){
+        $id = filter_input(INPUT_POST, 'id_curso', FILTER_SANITIZE_NUMBER_INT);
+        $this->modelCurso->desativarCurso($id);
+
+        $_SESSION['mensagem'] = 'Curso desativado com sucesso';
         $_SESSION['tipoMsg'] = 'success';
         header('Location: ' . URL_BASE . 'curso/listar');
         exit;
