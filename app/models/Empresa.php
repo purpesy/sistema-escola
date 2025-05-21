@@ -45,5 +45,11 @@ class Empresa extends Model
         $stmt->execute();
     }
 
-    
+    public function desativarEmpresa($id)
+    {
+        $sql = "UPDATE tbl_empresa SET status_empresa = 'Desativada' WHERE id_empresa = :id;";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+    }
 }
