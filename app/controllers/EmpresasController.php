@@ -67,7 +67,7 @@ class EmpresasController extends Controller
 
             $_SESSION['mensagem'] = 'Empresa cadastrada com sucesso.';
             $_SESSION['tipoMsg'] = 'success';
-            header('Location: ' . URL_BASE . 'empresa/listar');
+            header('Location: ' . URL_BASE . 'empresas/listar');
             exit;
         } else {
             $dados['mensagem'] = 'Preencha os campos obrigatórios.';
