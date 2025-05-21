@@ -37,11 +37,13 @@ class AlunosController extends Controller
         $this->carregarViews('admin/dash', $dados);
     }
 
-    public function desativar()
-    {
-        $dados = array();
+    public function desativar(){
+        $id = filter_input(INPUT_POST, 'id_aluno', FILTER_SANITIZE_NUMBER_INT);
+        $this->modelAluno->desativarAluno($id);
 
-        $dados['conteudo'] = 'admin/alunos/desativar';
-        $this->carregarViews('admin/dash', $dados);
+        $_SESSION['mensagem'] = 'Aluno desativado com sucesso';
+        $_SESSION['tipoMsg'] = 'success';
+        header('Location: ' . URL_BASE . 'aluno/listar');
+        exit;
     }
 }

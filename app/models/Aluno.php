@@ -61,4 +61,11 @@ class Aluno extends Model
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function desativarAluno($id){
+        $sql = "UPDATE tbl_aluno SET status_aluno = 'Inativo' WHERE id_aluno = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id', $id);
+        $stmt->execute();
+    }
 }
