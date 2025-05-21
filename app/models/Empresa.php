@@ -29,7 +29,7 @@ class Empresa extends Model
 
     public function criarEmpresa($dados)
     {
-        $sql = "INSERT INTO tbl_empresa (nome_empresa, fantasia_empresa, tipo_empresa, cnpj_empresa, inscr_est_empresa, email_empresa, telefone1_empresa, cep_empresa, endereco_empresa, numero_empresa, complemento_empresa, bairro_empresa, cidade_empresa, estado_empresa, data_criacao_empresa, data_atualizacao_empresa, status_empresa) VALUES (:nome_empresa, :fantasia_empresa, :tipo_empresa, :cnpj_empresa, :inscr_est_empresa, :email_empresa, :telefone1_empresa, :cep_empresa, :endereco_empresa, :numero_empresa, :complemento_empresa, :bairro_empresa, :cidade_empresa, :estado_empresa, :data_criacao_empresa, :data_atualizacao_empresa, :status_empresa)";
+        $sql = "INSERT INTO tbl_empresa (nome_empresa, fantasia_empresa, tipo_empresa, cnpj_empresa, inscr_est_empresa, email_empresa, telefone1_empresa, cep_empresa, endereco_empresa, numero_empresa, complemento_empresa, bairro_empresa, cidade_empresa, estado_empresa, data_criacao_empresa, data_atualizacao_empresa, status_empresa) VALUES (:nome_empresa, :fantasia_empresa, :tipo_empresa, :cnpj_empresa, :inscr_est_empresa, :email_empresa, :telefone1_empresa, :cep_empresa, :endereco_empresa, :numero_empresa, :complemento_empresa, :bairro_empresa, :cidade_empresa, :estado_empresa, NOW(), NOW(), 'Pendente')";
 
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':nome_empresa', $dados['nome_empresa']);
@@ -46,9 +46,6 @@ class Empresa extends Model
         $stmt->bindParam(':bairro_empresa', $dados['bairro_empresa']);
         $stmt->bindParam(':cidade_empresa', $dados['cidade_empresa']);
         $stmt->bindParam(':estado_empresa', $dados['estado_empresa']);
-        $stmt->bindParam(':data_criacao_empresa', $dados['data_criacao_empresa']);
-        $stmt->bindParam(':data_atualizacao_empresa', $dados['data_atualizacao_empresa']);
-        $stmt->bindParam(':status_empresa', $dados['status_empresa']);
         $stmt->execute();
     }
 
