@@ -116,6 +116,7 @@ class ApiController extends Controller
         echo json_encode($empresas, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 
+   
 
     // ===========================================================================
     // *********************FUNCIONARIO*********************************

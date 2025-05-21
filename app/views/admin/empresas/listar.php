@@ -49,7 +49,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipoMsg'])) {
                         <td><?= $linha['telefone1_empresa']; ?></td>
                         <td><?= $linha['cep_empresa']; ?></td>
                         <td>
-                            <a href="<?= URL_BASE ?>empresas/editar" class="btn btn-warning bg-warning">
+                            <a href="<?= URL_BASE ?>empresas/editar/<?= $linha['id_empresa']; ?>" class="btn btn-warning bg-warning">
                                 <i class="bi bi-pencil"></i>
                             </a>
                         </td>
