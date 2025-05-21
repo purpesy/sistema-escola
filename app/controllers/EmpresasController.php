@@ -80,11 +80,13 @@ class EmpresasController extends Controller
 }
 
 
-    public function editar()
+    public function editar($id)
     {
         $dados = array();
 
         $dados['conteudo'] = 'admin/empresas/editar';
+        $empresa = $this->modelEmpresa->getEmpresabyID($id);
+        $dados['empresa'] = $empresa;
         $this->carregarViews('admin/dash', $dados);
     }
 
