@@ -52,6 +52,33 @@ class Empresa extends Model
         $stmt->execute();
     }
 
+    public function patchAtualizarEmpresa($dados, $id)
+    {
+        $campos = [];
+        $parametros = [];
+        foreach ($dados as $campo => $valor) {
+            if (!empty($valor)) {
+                $campos[] = "$campo = :$campo";
+                $parametros[":$campo"] = $valor;
+            }
+        }
+        if (empty($campos)) {
+            return false;
+        }
+        // Adiciona campo de atualização
+        $campos[] = "data_atualizacao_empresa = NOW()";
+        // Adiciona o ID
+        $parametros[':id_empresa'] = $id;
+        // Monta a query
+        $sql = "UPDATE tbl_empresa SET " . implode(', ', $campos) . " WHERE id_empresa = :id_empresa";
+        $stmt = $this->db->prepare($sql);
+        // Faz o bind dos parâmetros
+        foreach ($parametros as $campo => $valor) {
+            $stmt->bindValue($campo, $valor);
+        }
+        return $stmt->execute();
+    }
+
     public function desativarEmpresa($id)
     {
         $sql = "UPDATE tbl_empresa SET status_empresa = 'Desativada' WHERE id_empresa = :id;";
