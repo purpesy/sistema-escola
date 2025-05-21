@@ -92,9 +92,12 @@ class EmpresasController extends Controller
 
     public function desativar()
     {
-        $dados = array();
+        $id = filter_input(INPUT_POST, 'id_curso', FILTER_SANITIZE_NUMBER_INT);
+        $this->modelEmpresa->desativarEmpresa($id);
 
-        $dados['conteudo'] = 'admin/empresas/desativar';
-        $this->carregarViews('admin/dash', $dados);
+        $_SESSION['mensagem'] = 'Empresa desativada com sucesso';
+        $_SESSION['tipoMsg'] = 'success';
+        header('Location: ' . URL_BASE . 'empresas/listar');
+        exit;
     }
 }
