@@ -6,7 +6,7 @@ class Empresa extends Model
     // metodo para pegar todas empresas
     public function getEmpresasAtiva()
     {
-        $sql = "SELECT * FROM tbl_empresa WHERE status_empresa = 'Ativo' ORDER BY fantasia_empresa ASC;";
+        $sql = "SELECT * FROM tbl_empresa WHERE status_empresa = 'Ativo' OR status_empresa = 'Pendente' ORDER BY fantasia_empresa ASC;";
         $stmt = $this->db->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

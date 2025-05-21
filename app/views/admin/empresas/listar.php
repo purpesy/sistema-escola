@@ -34,9 +34,18 @@
                             </a>
                         </td>
                         <td>
-                            <a href="<?= URL_BASE ?>empresas/desativar" class="btn btn-danger bg-danger">
-                                <i class="bi bi-trash3-fill"></i>
-                            </a>
+                            <form action="<?= URL_BASE ?>empresas/desativar" method="POST" style="display:inline;" onsubmit="return confirmarDesativacao()">
+                                <input type="hidden" name="id_empresa" value="<?= $linha['id_empresa']; ?>">
+                                <button type="submit" class="btn btn-danger bg-danger">
+                                    <i class="bi bi-trash3-fill"></i>
+                                </button>
+                            </form>
+                            <script>
+                                function confirmarDesativacao() {
+                                    return confirm('Tem certeza que deseja desativar esta empresa?');
+                                }
+                            </script>
+
                         </td>
                     </tr>
                 <?php endforeach; ?>

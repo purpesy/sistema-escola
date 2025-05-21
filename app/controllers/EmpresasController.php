@@ -17,7 +17,7 @@ class EmpresasController extends Controller
 
         $dados['conteudo'] = 'admin/empresas/listar';
 
-        $empresas = $this->modelEmpresa->getEmpresas();
+        $empresas = $this->modelEmpresa->getEmpresasAtiva();
         $dados['empresas'] = $empresas;
 
         $this->carregarViews('admin/dash', $dados);
@@ -92,7 +92,7 @@ class EmpresasController extends Controller
 
     public function desativar()
     {
-        $id = filter_input(INPUT_POST, 'id_curso', FILTER_SANITIZE_NUMBER_INT);
+        $id = filter_input(INPUT_POST, 'id_empresa', FILTER_SANITIZE_NUMBER_INT);
         $this->modelEmpresa->desativarEmpresa($id);
 
         $_SESSION['mensagem'] = 'Empresa desativada com sucesso';
