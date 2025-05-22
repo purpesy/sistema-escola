@@ -165,39 +165,11 @@ class CursoController extends Controller
     public function editar($id)
     {
         $dados = array();
+        $carregarDadosCurso = $this->modelCurso->carregarDados($id);
 
+        
         $dados['conteudo'] = 'admin/curso/editar';
-        $curso = $this->modelCurso->getCursoByID($id);
-        $dados['curso'] = $curso;
         $this->carregarViews('admin/dash', $dados);
-    }
-
-    public function AtualizarCurso($id)
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $dados = $_POST;
-            if (isset($dados['_method']) && $dados['_method'] === 'PATCH') {
-                // Simula um método PATCH
-                $_SERVER['REQUEST_METHOD'] = 'PATCH';
-                unset($dados['_method']);
-            }
-
-            if ($_SERVER['REQUEST_METHOD'] === 'PATCH') {
-                $resultado = $this->modelCurso->patchAtualizarCurso($dados, $id);
-                if ($resultado) {
-                    $_SESSION['mensagem_sucesso'] = "curso atualizado com sucesso!";
-                    // Se a atualização foi bem-sucedida, redireciona para a página de cursos
-                    header('Location: ' . URL_BASE . 'curso/editar/' . $id . '?sucesso=true'); // Aqui você define a URL de destino
-                    exit;
-                } else {
-                    http_response_code(500);
-                    echo json_encode(["Mensagem" => "Não foi possível atualizar. Erro de servidor"]);
-                }
-            }
-        } else {
-            http_response_code(405);
-            echo json_encode(["erro" => "Método não permitido."]);
-        }
     }
 
     public function publicar(){

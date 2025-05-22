@@ -9,7 +9,7 @@
 
 
 <?php foreach ($curso as $linha): ?>
-    <form action="<?= URL_BASE ?>curso/AtualizarCurso/<?= $linha['id_curso'] ?>" method="POST">
+    <form action="<?= URL_BASE ?>curso/editar/<?= $linha['id_curso'] ?>" method="POST">
         <input type="hidden" name="_method" value="PATCH"> <!-- se estiver usando método via POST com spoof -->
         <table class="table">
             <thead>
