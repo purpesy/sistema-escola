@@ -186,9 +186,9 @@ class CursoController extends Controller
             $data_atualizacao_curso = date('y-m-d H:i:s');
             $status_curso = $carregarDadosCurso['status_curso'];
 
-            /** 4º Atualizar os dados na tabela curso */
+            /** 3º Atualizar os dados na tabela curso */
             if ($nome_curso && $nivel_curso && $carga_horaria_curso) {
-                /** 5º Atualizar a campo foto_curso com o novo nome da foto */
+                /** 4º Atualizar a campo foto_curso com o novo nome da foto */
                 if (isset($_FILES['foto_curso']) && $_FILES['foto_curso']['error'] == 0) {
                     $arquivo = $this->uploadFoto($_FILES['foto_curso'], $id, $nome_curso);
                 } else {
@@ -211,15 +211,24 @@ class CursoController extends Controller
                     'foto_curso' => $arquivo
                 );
                 
-                $id_curso = $this->modelCurso->editarCurso($dadosCurso);
+                $resultado = $this->modelCurso->editarCurso($dadosCurso);
 
-                /** º Tratar o nome da imagem e salvar na pasta UPLOAD */
-
-                /** 7º Alerta na página de Listar Curso */
-                $_SESSION['mensagem'] = 'Curso adicionado com Sucesso';
-                $_SESSION['tipoMsg'] = 'success';
-                header('Location: ' . URL_BASE . 'curso/listar');
-                exit;
+                /** 5º Tratar o nome da imagem e salvar na pasta UPLOAD */
+                
+                if($resultado){
+                    
+                /** 6º Alerta na página de Listar Curso */
+                    $_SESSION['mensagem'] = 'Curso adicionado com Sucesso';
+                    $_SESSION['tipoMsg'] = 'success';
+                    header('Location: ' . URL_BASE . 'curso/listar');
+                    exit;
+                }else{
+                    $_SESSION['mensagem'] = 'Erro! Curso não atualizado.';
+                    $_SESSION['tipoMsg'] = 'erro';
+                    header('Location: ' . URL_BASE . 'curso/listar');
+                    exit;
+                }
+                
             }
         }
 
