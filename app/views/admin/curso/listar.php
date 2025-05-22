@@ -62,13 +62,13 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipoMsg'])) {
                         <td><?= $linha['area_curso']; ?></td>
                         <td><?= $linha['pre_requisito_curso']; ?></td>
                         <td><?= $linha['status_curso']; ?></td>
-                        <td>
-                            <form action="<?= URL_BASE ?>curso/publicar" method="POST" style="display:inline;">
-                                <input type="hidden" name="id_curso" value="<?= $linha['id_curso']; ?>">
-                                <button type="submit" class="btn btn-secondary bg-secondary">
-                                    Publicar
-                                </button>
-                            </form>
+                        <td style="text-align: center;">
+                            <input
+                                class="form-check-input toggle-status"
+                                type="checkbox"
+                                role="switch"
+                                data-id="<?= $linha['id_curso'] ?>"
+                                <?= $linha['status_curso'] === 'Ativo' ? 'checked' : '' ?>>
                         </td>
                         <td>
                             <a href="<?= URL_BASE ?>curso/editar/<?= $linha['id_curso']; ?>" class="btn btn-warning bg-warning">
@@ -96,3 +96,16 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipoMsg'])) {
     </div>
     <!-- /.card-body -->
 </div>
+
+
+<script>
+    document.querySelectorAll('.toggle-status').forEach(function(button) {
+        button.addEventListener('click', function() {
+            const id = this.dataset.id;
+            const status = this.checked ? 'Ativo' : 'Pendente';
+
+            //requisição AJAX com fetch
+            fetch('<?= URL_BASE ?>curso/publicar')
+        });
+    });
+</script>
