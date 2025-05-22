@@ -134,7 +134,7 @@ class CursoController extends Controller
                         }
                     }
 
-                    $_SESSION['mensagem'] = 'Curso atualizado com Sucesso';
+                    $_SESSION['mensagem'] = 'Curso Criado com Sucesso';
                     $_SESSION['tipoMsg'] = 'success';
                     header('Location: ' . URL_BASE . 'curso/listar');
                     exit;
@@ -211,7 +211,7 @@ class CursoController extends Controller
                     'status_curso' => $status_curso,
                     'foto_curso' => $arquivo
                 );
-                
+                  
                 $resultado = $this->modelCurso->editarCurso($dadosCurso);
 
                 /** 5º Tratar o nome da imagem e salvar na pasta UPLOAD */

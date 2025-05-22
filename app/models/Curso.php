@@ -143,6 +143,8 @@ class Curso extends Model
         $stmt->bindValue(':status_curso', $dados['status_curso']);
         $stmt->bindValue(':foto_curso', $dados['foto_curso']);
         $stmt->bindValue(':id', $dados['id']);
-        return $stmt->execute();
+        $resultado = $stmt->execute();
+
+        return $resultado;
     }
 }
