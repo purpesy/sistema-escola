@@ -125,9 +125,9 @@ class Curso extends Model
         $stmt->execute();
     }
 
-    public function editarCurso($dados) 
+    public function editarCurso($dados)
     {
-        $sql = "UPDATE tbl_curso SET nome_curso = :nome_curso, descricao_curso = :descricao_curso, pre_requisito_curso = :pre_requisito_curso, valor_curso = :valor_curso, carga_horaria_curso = :carga_horaria_curso, area_curso = :area_curso, nivel_curso = :nivel_curso, modalidade_curso = :modalidade_curso, alt_curso = :alt_curso, data_criacao_curso = :data_criacao_curso, data_atualizacao_curso = :data_atualizacao_curso, status_curso = :status_curso, foto_curso = :arquivo WHERE id_curso = :id";
+        $sql = "UPDATE tbl_curso SET nome_curso = :nome_curso, descricao_curso = :descricao_curso, pre_requisito_curso = :pre_requisito_curso, valor_curso = :valor_curso, carga_horaria_curso = :carga_horaria_curso, area_curso = :area_curso, nivel_curso = :nivel_curso, modalidade_curso = :modalidade_curso, alt_curso = :alt_curso, data_criacao_curso = :data_criacao_curso, data_atualizacao_curso = :data_atualizacao_curso, status_curso = :status_curso, foto_curso = :foto_curso WHERE id_curso = :id";
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':nome_curso', $dados['nome_curso']);
         $stmt->bindValue(':descricao_curso', $dados['descricao_curso']);
@@ -138,9 +138,11 @@ class Curso extends Model
         $stmt->bindValue(':nivel_curso', $dados['nivel_curso']);
         $stmt->bindValue(':modalidade_curso', $dados['modalidade_curso']);
         $stmt->bindValue(':alt_curso', $dados['nome_curso']);
+        $stmt->bindValue(':data_criacao_curso', $dados['data_criacao_curso']);
+        $stmt->bindValue(':data_atualizacao_curso', $dados['data_atualizacao_curso']);
         $stmt->bindValue(':status_curso', $dados['status_curso']);
-        $stmt->bindValue(':foto_curso', $dados['arquivo']);
-        $stmt->bindValue(':id_curso', $dados['id']);
-        $stmt->execute();
+        $stmt->bindValue(':foto_curso', $dados['foto_curso']);
+        $stmt->bindValue(':id', $dados['id']);
+        return $stmt->execute();
     }
 }

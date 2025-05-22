@@ -8,8 +8,6 @@
 <?php endif; ?>
 
 <form action="<?= URL_BASE ?>curso/editar/<?= $curso['id_curso'] ?>" method="POST" enctype="multipart/form-data">
-    <input type="hidden" name="_method" value="PATCH">
-
     <div class="row mb-3">
         <div class="col-md-4">
             <label>Foto Atual</label><br>
@@ -32,7 +30,7 @@
         <div class="col-md-6">
             <label>Nível</label>
             <select name="nivel_curso" class="form-control">
-                <option value="" disabled selected>Atual: <?= $curso['nivel_curso'] ?></option>
+                <option value="<?= $curso['nivel_curso'] ?>">Atual: <?= $curso['nivel_curso'] ?></option>
                 <option value="Técnico">Técnico</option>
                 <option value="Tecnólogo">Tecnólogo</option>
                 <option value="Graduação">Graduação</option>

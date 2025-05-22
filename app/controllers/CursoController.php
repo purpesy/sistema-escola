@@ -134,7 +134,7 @@ class CursoController extends Controller
                         }
                     }
 
-                    $_SESSION['mensagem'] = 'Curso adicionado com Sucesso';
+                    $_SESSION['mensagem'] = 'Curso atualizado com Sucesso';
                     $_SESSION['tipoMsg'] = 'success';
                     header('Location: ' . URL_BASE . 'curso/listar');
                     exit;
@@ -175,7 +175,7 @@ class CursoController extends Controller
             $nome_curso = filter_input(INPUT_POST, 'nome_curso', FILTER_SANITIZE_SPECIAL_CHARS);
             $descricao_curso = filter_input(INPUT_POST, 'descricao_curso', FILTER_SANITIZE_SPECIAL_CHARS);
             $pre_requisito_curso = filter_input(INPUT_POST, 'pre_requisito_curso', FILTER_SANITIZE_SPECIAL_CHARS);
-            $valor_curso = filter_input(INPUT_POST, 'valor_curso', FILTER_SANITIZE_NUMBER_FLOAT);
+            $valor_curso = filter_input(INPUT_POST, 'valor_curso', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
             $carga_horaria_curso = filter_input(INPUT_POST, 'carga_horaria_curso', FILTER_SANITIZE_NUMBER_INT);
             $area_curso = filter_input(INPUT_POST, 'area_curso', FILTER_SANITIZE_SPECIAL_CHARS);
             $nivel_curso = filter_input(INPUT_POST, 'nivel_curso', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -192,10 +192,11 @@ class CursoController extends Controller
                 if (isset($_FILES['foto_curso']) && $_FILES['foto_curso']['error'] == 0) {
                     $arquivo = $this->uploadFoto($_FILES['foto_curso'], $id, $nome_curso);
                 } else {
-                    $arquivo = $$carregarDadosCurso['foto_curso'];
+                    $arquivo = $carregarDadosCurso['foto_curso'];
                 }
 
                 $dadosCurso = array(
+                    'id' => $id,
                     'nome_curso' => $nome_curso,
                     'descricao_curso' => $descricao_curso,
                     'pre_requisito_curso' => $pre_requisito_curso,
@@ -218,7 +219,7 @@ class CursoController extends Controller
                 if($resultado){
                     
                 /** 6º Alerta na página de Listar Curso */
-                    $_SESSION['mensagem'] = 'Curso adicionado com Sucesso';
+                    $_SESSION['mensagem'] = 'Curso atualizado com Sucesso';
                     $_SESSION['tipoMsg'] = 'success';
                     header('Location: ' . URL_BASE . 'curso/listar');
                     exit;
