@@ -121,4 +121,5 @@ class Curso extends Model
         $stmt->bindValue(':id', $id);
         $stmt->execute();
     }
+    
 }
