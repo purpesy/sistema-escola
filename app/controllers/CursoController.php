@@ -165,14 +165,23 @@ class CursoController extends Controller
     public function editar($id)
     {
         $dados = array();
+        /** 1º Carregar as informações atuais do curso */
         $carregarDadosCurso = $this->modelCurso->carregarDados($id);
 
         
+        /** 2º A chamada vem do botão Editar Curso */
+        /** 3º Pegar os dados do form */
+        /** 4º Atualizar os dados na tabela curso */
+        /** 5º Tratar o nome da imagem e salvar na pasta UPLOAD */
+        /** 6º Atualizar a campo foto_curso com o novo nome da foto */
+        /** 7º Alerta na página de Listar Curso */
+
         $dados['conteudo'] = 'admin/curso/editar';
         $this->carregarViews('admin/dash', $dados);
     }
 
-    public function publicar(){
+    public function publicar()
+    {
         $id = filter_input(INPUT_POST, 'id_curso', FILTER_SANITIZE_NUMBER_INT);
         $this->modelCurso->publicarCurso($id);
 
@@ -182,7 +191,8 @@ class CursoController extends Controller
         exit;
     }
 
-    public function desativar(){
+    public function desativar()
+    {
         $id = filter_input(INPUT_POST, 'id_curso', FILTER_SANITIZE_NUMBER_INT);
         $this->modelCurso->desativarCurso($id);
 

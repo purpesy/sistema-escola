@@ -99,6 +99,14 @@ class Curso extends Model
         $stmt->execute();
     }
 
+    // função para carregar os dados do curso
+    public function carregarDados($id){
+        $sql = "SELECT * FROM tbl_curso WHERE id_curso = ':id'";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id', $id);
+        $stmt->execute();
+    }
+
     public function publicarCurso($id){
         $sql = "UPDATE tbl_curso SET status_curso = 'ATIVO' WHERE id_curso = :id";
         $stmt = $this->db->prepare($sql);
