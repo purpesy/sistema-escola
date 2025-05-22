@@ -100,26 +100,47 @@ class Curso extends Model
     }
 
     // função para carregar os dados do curso
-    public function carregarDados($id){
+    public function carregarDados($id)
+    {
         $sql = "SELECT * FROM tbl_curso WHERE id_curso = :id";
         $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(':id', $id ,PDO::PARAM_INT);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function publicarCurso($id){
+    public function publicarCurso($id)
+    {
         $sql = "UPDATE tbl_curso SET status_curso = 'ATIVO' WHERE id_curso = :id";
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':id', $id);
         $stmt->execute();
     }
 
-    public function desativarCurso($id){
+    public function desativarCurso($id)
+    {
         $sql = "UPDATE tbl_curso SET status_curso = 'Desativado' WHERE id_curso = :id";
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':id', $id);
         $stmt->execute();
     }
-    
+
+    public function editarCurso($dados) 
+    {
+        $sql = "UPDATE tbl_curso SET nome_curso = :nome_curso, descricao_curso = :descricao_curso, pre_requisito_curso = :pre_requisito_curso, valor_curso = :valor_curso, carga_horaria_curso = :carga_horaria_curso, area_curso = :area_curso, nivel_curso = :nivel_curso, modalidade_curso = :modalidade_curso, alt_curso = :alt_curso, data_criacao_curso = :data_criacao_curso, data_atualizacao_curso = :data_atualizacao_curso, status_curso = :status_curso, foto_curso = :arquivo WHERE id_curso = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':nome_curso', $dados['nome_curso']);
+        $stmt->bindValue(':descricao_curso', $dados['descricao_curso']);
+        $stmt->bindValue(':pre_requisito_curso', $dados['pre_requisito_curso']);
+        $stmt->bindValue(':valor_curso', $dados['valor_curso']);
+        $stmt->bindValue(':carga_horaria_curso', $dados['carga_horaria_curso']);
+        $stmt->bindValue(':area_curso', $dados['area_curso']);
+        $stmt->bindValue(':nivel_curso', $dados['nivel_curso']);
+        $stmt->bindValue(':modalidade_curso', $dados['modalidade_curso']);
+        $stmt->bindValue(':alt_curso', $dados['nome_curso']);
+        $stmt->bindValue(':status_curso', $dados['status_curso']);
+        $stmt->bindValue(':foto_curso', $dados['arquivo']);
+        $stmt->bindValue(':id_curso', $dados['id']);
+        $stmt->execute();
+    }
 }

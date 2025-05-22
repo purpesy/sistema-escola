@@ -191,13 +191,6 @@ class CursoController extends Controller
                 /** 5º Atualizar a campo foto_curso com o novo nome da foto */
                 if (isset($_FILES['foto_curso']) && $_FILES['foto_curso']['error'] == 0) {
                     $arquivo = $this->uploadFoto($_FILES['foto_curso'], $id, $nome_curso);
-                    if ($arquivo) {
-                        // atualizar a foto na base de dados do ultimo id do curso adicionado
-                        $this->modelCurso->atualizarFoto($id, $arquivo);
-                    } else {
-                        $dados['mensagem'] = 'Erro ao fazer upload da foto.';
-                        $dados['tipoMSG'] = 'Erro';
-                    }
                 } else {
                     $arquivo = $$carregarDadosCurso['foto_curso'];
                 }
