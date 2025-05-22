@@ -167,8 +167,7 @@ class CursoController extends Controller
         $dados = array();
         /** 1º Carregar as informações atuais do curso */
         $carregarDadosCurso = $this->modelCurso->carregarDados($id);
-
-        
+        $dados['curso'] = $carregarDadosCurso;
         /** 2º A chamada vem do botão Editar Curso */
         /** 3º Pegar os dados do form */
         /** 4º Atualizar os dados na tabela curso */
@@ -176,7 +175,7 @@ class CursoController extends Controller
         /** 6º Atualizar a campo foto_curso com o novo nome da foto */
         /** 7º Alerta na página de Listar Curso */
 
-        $dados['conteudo'] = 'admin/curso/editar';
+        $dados['conteudo'] = 'admin/curso/editar'; 
         $this->carregarViews('admin/dash', $dados);
     }
 

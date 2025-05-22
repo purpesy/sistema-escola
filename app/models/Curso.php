@@ -101,10 +101,11 @@ class Curso extends Model
 
     // função para carregar os dados do curso
     public function carregarDados($id){
-        $sql = "SELECT * FROM tbl_curso WHERE id_curso = ':id'";
+        $sql = "SELECT * FROM tbl_curso WHERE id_curso = :id";
         $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(':id', $id);
+        $stmt->bindValue(':id', $id ,PDO::PARAM_INT);
         $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public function publicarCurso($id){
