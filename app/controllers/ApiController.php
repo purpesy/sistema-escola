@@ -68,34 +68,6 @@ class ApiController extends Controller
         echo json_encode($curso, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 
-    // Editar curso
-    public function AtualizarCurso($id)
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $dados = $_POST;
-            if (isset($dados['_method']) && $dados['_method'] === 'PATCH') {
-                // Simula um método PATCH
-                $_SERVER['REQUEST_METHOD'] = 'PATCH';
-                unset($dados['_method']);
-            }
-
-            if ($_SERVER['REQUEST_METHOD'] === 'PATCH') {
-                $resultado = $this->cursoModel->patchAtualizarCurso($dados, $id);
-                if ($resultado) {
-                    $_SESSION['mensagem_sucesso'] = "curso atualizado com sucesso!";
-                    // Se a atualização foi bem-sucedida, redireciona para a página de cursos
-                    header('Location: ' . URL_BASE . 'curso/editar/' . $id . '?sucesso=true'); // Aqui você define a URL de destino
-                    exit;
-                } else {
-                    http_response_code(500);
-                    echo json_encode(["Mensagem" => "Não foi possível atualizar. Erro de servidor"]);
-                }
-            }
-        } else {
-            http_response_code(405);
-            echo json_encode(["erro" => "Método não permitido."]);
-        }
-    }
 
     
 
